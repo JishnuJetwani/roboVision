@@ -1,0 +1,156 @@
+<mujoco model="robovision_cup">
+<compiler angle="radian" autolimits="true"/>
+<option timestep=".002" integrator="implicitfast" cone="elliptic" impratio="5" iterations="50" tolerance="1e-9"/>
+<visual><headlight ambient=".32 .32 .32" diffuse=".55 .55 .55" specular=".15 .15 .15"/><global offwidth="640" offheight="480"/><quality shadowsize="2048"/></visual>
+<default>
+ <pair solref=".012 1" solimp=".95 .99 .001"/>
+ <joint damping="2" armature=".01"/>
+ <geom friction=".8 .004 .0001" solref=".012 1" solimp=".95 .99 .001" condim="4" density="600"/>
+ <position kp="1500" kv="20"/>
+</default>
+<asset>
+ <texture name="studio_sky" type="skybox" builtin="gradient" rgb1=".20 .25 .32" rgb2=".55 .61 .67" width="256" height="1024"/>
+ <texture name="floor_grid" type="2d" builtin="checker" width="256" height="256" rgb1=".14 .17 .21" rgb2=".17 .20 .24"/>
+ <material name="floor_material" texture="floor_grid" texrepeat="6 6"/>
+</asset>
+<worldbody>
+ <light name="key" pos=".2 -.5 1.3" dir="0 0 -1" ambient=".12 .12 .12" diffuse=".8 .8 .8" castshadow="true"/>
+ <light name="fill" pos=".1 .6 1" dir=".2 -.6 -.7" diffuse=".6 .6 .6" castshadow="false"/>
+ <geom name="floor" type="plane" size="2 2 .1" material="floor_material"/>
+ <geom name="table" type="box" pos=".27 0 .225" size=".40 .30 .025" rgba=".88 .90 .92 1"/>
+<geom name="table_leg_0" type="cylinder" pos="-0.08 -0.25 .1" size=".023 .1" rgba=".2 .24 .3 1" contype="0" conaffinity="0"/>
+<geom name="table_leg_1" type="cylinder" pos="-0.08 0.25 .1" size=".023 .1" rgba=".2 .24 .3 1" contype="0" conaffinity="0"/>
+<geom name="table_leg_2" type="cylinder" pos="0.62 -0.25 .1" size=".023 .1" rgba=".2 .24 .3 1" contype="0" conaffinity="0"/>
+<geom name="table_leg_3" type="cylinder" pos="0.62 0.25 .1" size=".023 .1" rgba=".2 .24 .3 1" contype="0" conaffinity="0"/>
+ <geom name="mount" contype="0" conaffinity="0" type="cylinder" pos="0 0 .325" size=".055 .075" rgba=".1 .14 .20 1"/>
+ <camera name="policy" pos=".45 -.45 .75" xyaxes=".96 .278 0 -.185 .639 .747" fovy="35"/>
+ <camera name="demo" pos=".85 -.95 .85" xyaxes=".87 .49 0 -.20 .36 .91" fovy="42"/>
+ <body name="yaw_body" pos="0 0 .42" gravcomp="1">
+  <joint name="yaw" type="hinge" axis="0 0 1" range="-.8 .8"/>
+  <geom type="cylinder" size=".047 .032" rgba=".12 .18 .28 1" mass=".3"/>
+  <body name="upper" gravcomp="1">
+   <joint name="shoulder" type="hinge" axis="0 1 0" range="-1.95 .45"/>
+   <geom name="upper_link" type="capsule" fromto="0 0 0 .30 0 0" size=".024" rgba=".85 .88 .92 1" mass=".6"/>
+   <body name="forearm" pos=".30 0 0" gravcomp="1">
+    <joint name="elbow" type="hinge" axis="0 1 0" range=".25 2.7"/>
+    <geom name="fore_link" type="capsule" fromto="0 0 0 .28 0 0" size=".020" rgba=".19 .36 .56 1" mass=".4"/>
+    <body name="wrist" pos=".28 0 0" gravcomp="1">
+     <joint name="wrist_pitch" type="hinge" axis="0 1 0" range="-1.4 2.1"/>
+     <geom name="palm" type="box" size=".016 .059 .025" rgba=".12 .17 .23 1" mass=".18"/>
+     <site name="grasp_center" pos=".075 0 0" size=".002" rgba="1 0 0 0"/>
+     <body name="left_finger" pos="0 .006 0" gravcomp="1">
+      <joint name="left_jaw" type="slide" axis="0 1 0" range="0 .045" damping="3" armature=".005"/>
+      <geom name="left_shaft" type="box" pos=".025 0 0" size=".025 .006 .018" rgba=".5 .55 .61 1" mass=".025"/>
+      <geom name="left_pad" type="box" pos=".075 0 0" size=".035 .006 .022" rgba=".08 .09 .10 1" mass=".025"/>
+     </body>
+     <body name="right_finger" pos="0 -.006 0" gravcomp="1">
+      <joint name="right_jaw" type="slide" axis="0 -1 0" range="0 .045" damping="3" armature=".005"/>
+      <geom name="right_shaft" type="box" pos=".025 0 0" size=".025 .006 .018" rgba=".5 .55 .61 1" mass=".025"/>
+      <geom name="right_pad" type="box" pos=".075 0 0" size=".035 .006 .022" rgba=".08 .09 .10 1" mass=".025"/>
+     </body>
+    </body>
+   </body>
+  </body>
+ </body>
+ <body name="cup" pos=".32 0 .296">
+  <freejoint name="cup_free"/>
+  <inertial pos="0 0 0" mass=".08" diaginertia=".000081 .000081 .0000544"/>
+  <geom name="cup_base" type="cylinder" pos="0 0 -.043" size=".028 .002" rgba=".1 .65 .72 1"/>
+ <geom name="cup_wall_0" type="box" pos="0.0260000 0.0000000 .002" euler="0 0 0.0000000" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_1" type="box" pos="0.0240209 0.0099498 .002" euler="0 0 0.3926991" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_2" type="box" pos="0.0183848 0.0183848 .002" euler="0 0 0.7853982" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_3" type="box" pos="0.0099498 0.0240209 .002" euler="0 0 1.1780972" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_4" type="box" pos="0.0000000 0.0260000 .002" euler="0 0 1.5707963" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_5" type="box" pos="-0.0099498 0.0240209 .002" euler="0 0 1.9634954" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_6" type="box" pos="-0.0183848 0.0183848 .002" euler="0 0 2.3561945" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_7" type="box" pos="-0.0240209 0.0099498 .002" euler="0 0 2.7488936" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_8" type="box" pos="-0.0260000 0.0000000 .002" euler="0 0 3.1415927" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_9" type="box" pos="-0.0240209 -0.0099498 .002" euler="0 0 3.5342917" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_10" type="box" pos="-0.0183848 -0.0183848 .002" euler="0 0 3.9269908" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_11" type="box" pos="-0.0099498 -0.0240209 .002" euler="0 0 4.3196899" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_12" type="box" pos="-0.0000000 -0.0260000 .002" euler="0 0 4.7123890" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_13" type="box" pos="0.0099498 -0.0240209 .002" euler="0 0 5.1050881" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_14" type="box" pos="0.0183848 -0.0183848 .002" euler="0 0 5.4977871" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+<geom name="cup_wall_15" type="box" pos="0.0240209 -0.0099498 .002" euler="0 0 5.8904862" size=".002 .0054 .043" rgba=".1 .65 .72 1"/>
+ </body>
+</worldbody>
+<contact>
+ <exclude body1="left_finger" body2="right_finger"/>
+ <pair name="left_pad_cup_0" geom1="left_pad" geom2="cup_wall_0" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_1" geom1="left_pad" geom2="cup_wall_1" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_2" geom1="left_pad" geom2="cup_wall_2" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_3" geom1="left_pad" geom2="cup_wall_3" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_4" geom1="left_pad" geom2="cup_wall_4" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_5" geom1="left_pad" geom2="cup_wall_5" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_6" geom1="left_pad" geom2="cup_wall_6" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_7" geom1="left_pad" geom2="cup_wall_7" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_8" geom1="left_pad" geom2="cup_wall_8" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_9" geom1="left_pad" geom2="cup_wall_9" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_10" geom1="left_pad" geom2="cup_wall_10" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_11" geom1="left_pad" geom2="cup_wall_11" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_12" geom1="left_pad" geom2="cup_wall_12" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_13" geom1="left_pad" geom2="cup_wall_13" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_14" geom1="left_pad" geom2="cup_wall_14" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_15" geom1="left_pad" geom2="cup_wall_15" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_0" geom1="right_pad" geom2="cup_wall_0" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_1" geom1="right_pad" geom2="cup_wall_1" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_2" geom1="right_pad" geom2="cup_wall_2" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_3" geom1="right_pad" geom2="cup_wall_3" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_4" geom1="right_pad" geom2="cup_wall_4" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_5" geom1="right_pad" geom2="cup_wall_5" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_6" geom1="right_pad" geom2="cup_wall_6" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_7" geom1="right_pad" geom2="cup_wall_7" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_8" geom1="right_pad" geom2="cup_wall_8" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_9" geom1="right_pad" geom2="cup_wall_9" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_10" geom1="right_pad" geom2="cup_wall_10" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_11" geom1="right_pad" geom2="cup_wall_11" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_12" geom1="right_pad" geom2="cup_wall_12" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_13" geom1="right_pad" geom2="cup_wall_13" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_14" geom1="right_pad" geom2="cup_wall_14" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_15" geom1="right_pad" geom2="cup_wall_15" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_pad_cup_base_material" geom1="left_pad" geom2="cup_base" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_pad_cup_base_material" geom1="right_pad" geom2="cup_base" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_base_material" geom1="left_shaft" geom2="cup_base" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_0_material" geom1="left_shaft" geom2="cup_wall_0" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_1_material" geom1="left_shaft" geom2="cup_wall_1" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_2_material" geom1="left_shaft" geom2="cup_wall_2" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_3_material" geom1="left_shaft" geom2="cup_wall_3" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_4_material" geom1="left_shaft" geom2="cup_wall_4" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_5_material" geom1="left_shaft" geom2="cup_wall_5" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_6_material" geom1="left_shaft" geom2="cup_wall_6" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_7_material" geom1="left_shaft" geom2="cup_wall_7" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_8_material" geom1="left_shaft" geom2="cup_wall_8" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_9_material" geom1="left_shaft" geom2="cup_wall_9" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_10_material" geom1="left_shaft" geom2="cup_wall_10" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_11_material" geom1="left_shaft" geom2="cup_wall_11" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_12_material" geom1="left_shaft" geom2="cup_wall_12" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_13_material" geom1="left_shaft" geom2="cup_wall_13" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_14_material" geom1="left_shaft" geom2="cup_wall_14" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="left_shaft_cup_wall_15_material" geom1="left_shaft" geom2="cup_wall_15" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_base_material" geom1="right_shaft" geom2="cup_base" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_0_material" geom1="right_shaft" geom2="cup_wall_0" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_1_material" geom1="right_shaft" geom2="cup_wall_1" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_2_material" geom1="right_shaft" geom2="cup_wall_2" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_3_material" geom1="right_shaft" geom2="cup_wall_3" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_4_material" geom1="right_shaft" geom2="cup_wall_4" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_5_material" geom1="right_shaft" geom2="cup_wall_5" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_6_material" geom1="right_shaft" geom2="cup_wall_6" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_7_material" geom1="right_shaft" geom2="cup_wall_7" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_8_material" geom1="right_shaft" geom2="cup_wall_8" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_9_material" geom1="right_shaft" geom2="cup_wall_9" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_10_material" geom1="right_shaft" geom2="cup_wall_10" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_11_material" geom1="right_shaft" geom2="cup_wall_11" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_12_material" geom1="right_shaft" geom2="cup_wall_12" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_13_material" geom1="right_shaft" geom2="cup_wall_13" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_14_material" geom1="right_shaft" geom2="cup_wall_14" condim="4" friction="1 1 .004 .0001 .0001"/>
+<pair name="right_shaft_cup_wall_15_material" geom1="right_shaft" geom2="cup_wall_15" condim="4" friction="1 1 .004 .0001 .0001"/>
+</contact>
+<actuator>
+ <position name="yaw_act" joint="yaw" ctrlrange="-.8 .8" forcerange="-40 40"/>
+ <position name="shoulder_act" joint="shoulder" ctrlrange="-1.95 .45" forcerange="-55 55"/>
+ <position name="elbow_act" joint="elbow" ctrlrange=".25 2.7" forcerange="-45 45"/>
+ <position name="wrist_act" joint="wrist_pitch" ctrlrange="-1.4 2.1" forcerange="-20 20" kp="750" kv="10"/>
+ <position name="left_act" joint="left_jaw" ctrlrange="0 .045" forcerange="-10 10" kp="400" kv="8"/>
+ <position name="right_act" joint="right_jaw" ctrlrange="0 .045" forcerange="-10 10" kp="400" kv="8"/>
+</actuator>
+</mujoco>

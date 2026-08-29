@@ -11,3 +11,15 @@ Requires Python 3.11 and [uv](https://docs.astral.sh/uv/).
 ```sh
 uv sync --group dev
 ```
+
+## Environment
+
+The arm has base, shoulder, elbow and wrist joints, plus a parallel-jaw gripper. It lifts a hollow cup through finger contact, using finite-force actuators.
+
+`VisionCupEnv` takes four actions: X, Y and Z movement, and jaw opening. Observations contain two 96 x 96 RGB frames and the robot's state.
+
+Success requires a 0.5-second hold with both fingers touching and the cup's bottom at least 6 cm above the table. During the hold, tilt must stay below 20 degrees and speed below 0.1 m/s.
+
+```sh
+uv run pytest -q
+```
