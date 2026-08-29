@@ -1,0 +1,4 @@
+# Preserve CSV bytes for checksum verification.
+*.csv -text whitespace=cr-at-eol
+# Matplotlib emits spaces inside SVG path data.
+*.svg -text -whitespace
