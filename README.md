@@ -29,3 +29,5 @@ uv run pytest -q
 Color segmentation measures the cyan cup's position and shape in the image. The target network uses these measurements and the robot's state to choose an XY target. A second network takes twelve robot measurements and controls vertical motion and jaw opening.
 
 Checkpoint loaders check the model version and load tensor weights.
+
+Inverse kinematics moves the hand above the chosen target. An XY servo holds it while the grasp network controls vertical motion and the jaws at 20 Hz. The controllers receive no simulator cup coordinates or contact flags.
