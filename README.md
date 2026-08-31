@@ -23,3 +23,9 @@ Success requires a 0.5-second hold with both fingers touching and the cup's bott
 ```sh
 uv run pytest -q
 ```
+
+## Policies
+
+Color segmentation measures the cyan cup's position and shape in the image. The target network uses these measurements and the robot's state to choose an XY target. A second network takes twelve robot measurements and controls vertical motion and jaw opening.
+
+Checkpoint loaders check the model version and load tensor weights.

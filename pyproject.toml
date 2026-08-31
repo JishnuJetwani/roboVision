@@ -6,6 +6,8 @@ requires-python = ">=3.11,<3.13"
 dependencies = [
   "mujoco==3.3.7",
   "gymnasium==1.2.1",
+  "stable-baselines3==2.7.0",
+  "torch==2.8.0",
   "numpy==2.2.6",
 ]
 
