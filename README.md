@@ -31,3 +31,14 @@ Color segmentation measures the cyan cup's position and shape in the image. The 
 Checkpoint loaders check the model version and load tensor weights.
 
 Inverse kinematics moves the hand above the chosen target. An XY servo holds it while the grasp network controls vertical motion and the jaws at 20 Hz. The controllers receive no simulator cup coordinates or contact flags.
+
+## Grasp training
+
+A scripted teacher collects demonstrations with the hand aligned above the cup and small changes to its actions. Behavior cloning uses separate training and validation episodes. Demonstrations are included in `data/grasp_demonstrations.npz`.
+
+```sh
+uv run python -m robovision collect --out runs/demonstrations.npz --episodes 600
+uv run python -m robovision train-grasp --data data/grasp_demonstrations.npz --out runs/grasp --seed 201 --max-seconds 1200
+```
+
+Add `--resume` to the same training command to continue from the saved training state.
