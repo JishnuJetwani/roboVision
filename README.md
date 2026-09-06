@@ -42,3 +42,13 @@ uv run python -m robovision train-grasp --data data/grasp_demonstrations.npz --o
 ```
 
 Add `--resume` to the same training command to continue from the saved training state.
+
+## Approach training
+
+PPO chooses one XY target per episode and gets a binary reaching reward. Hard-only training requires 6 mm accuracy from the start.
+
+```sh
+uv run python -m robovision train-target --method hard --run-dir runs/target --seed 101 --max-seconds 1200
+```
+
+Runs save checkpoints about every two minutes and stop after a complete update. Use `--resume` to continue a run.
