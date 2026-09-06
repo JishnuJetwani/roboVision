@@ -48,7 +48,9 @@ Add `--resume` to the same training command to continue from the saved training 
 PPO chooses one XY target per episode and gets a binary reaching reward. Hard-only training requires 6 mm accuracy from the start.
 
 ```sh
-uv run python -m robovision train-target --method hard --run-dir runs/target --seed 101 --max-seconds 1200
+uv run python -m robovision train-target --method curriculum --run-dir runs/target --seed 101 --max-seconds 1200
 ```
 
 Runs save checkpoints about every two minutes and stop after a complete update. Use `--resume` to continue a run.
+
+The curriculum tightens the reaching tolerance through 60, 40, 25, 15, 10 and 6 mm. Each stage needs at least 2,048 interactions and 50% success over its latest 2,048 episodes before advancing. Use `--method hard` for the baseline.

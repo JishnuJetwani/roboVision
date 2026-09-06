@@ -6,6 +6,7 @@ import numpy as np
 from stable_baselines3 import PPO
 import torch
 
+from robovision.curriculum import ReachCurriculum
 from robovision import train_grasp, train_target
 
 
@@ -22,6 +23,20 @@ def assert_equal(left, right):
             assert_equal(first, second)
     else:
         assert left == right
+
+
+def test_curriculum_resumes_with_the_same_recent_window():
+    curriculum = ReachCurriculum()
+    curriculum.observe([True] * 2048)
+    assert curriculum.advance(2047) is None
+    assert curriculum.advance(2048)["tolerance"] == .04
+    curriculum.observe([False] * 1200 + [True] * 848)
+    assert curriculum.advance(4096) is None
+    restored = ReachCurriculum(json.loads(json.dumps(curriculum.state_dict())))
+    for controller in (curriculum, restored):
+        controller.observe([True] * 1200)
+    assert curriculum.advance(5296) == restored.advance(5296)
+    assert curriculum.state_dict() == restored.state_dict()
 
 
 def test_grasp_training_resumes_weights_optimizer_and_sampling(tmp_path, monkeypatch):
@@ -71,7 +86,7 @@ def test_ppo_resumes_after_a_complete_update(tmp_path, monkeypatch):
                         lambda **kwargs: environment_class(render_images=False, **kwargs))
 
     def arguments(name, resume=False):
-        return Namespace(method="hard", run_dir=tmp_path / name, seed=101,
+        return Namespace(method="curriculum", run_dir=tmp_path / name, seed=101,
                          steps=16, device="cpu", envs=1, rollout_steps=8, batch_size=8,
                          epochs=2, learning_rate=3e-4, threads=1, max_seconds=60.,
                          checkpoint_seconds=120., resume=resume)
@@ -108,3 +123,4 @@ def test_ppo_resumes_after_a_complete_update(tmp_path, monkeypatch):
     assert_equal(whole.policy.state_dict(), split.policy.state_dict())
     assert_equal(whole.policy.optimizer.state_dict(), split.policy.optimizer.state_dict())
     assert_equal(whole_state, split_state)
+    assert whole_metadata["curriculum_state"] == split_metadata["curriculum_state"]

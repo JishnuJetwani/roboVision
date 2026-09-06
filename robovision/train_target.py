@@ -17,6 +17,7 @@ from stable_baselines3.common.vec_env import DummyVecEnv
 import torch
 from torch import nn
 
+from robovision.curriculum import ReachCurriculum
 from robovision.io import atomic_json, file_hash, stop_after_update
 from robovision.models import export_target
 from robovision.reach_env import HARD_TOLERANCE, VERSION, PrecisionReachEnv
@@ -88,9 +89,10 @@ def restore(model, checkpoint_path):
 
 
 class Recorder(BaseCallback):
-    def __init__(self, args, started, previous_elapsed):
+    def __init__(self, args, curriculum, started, previous_elapsed):
         super().__init__()
         self.args = args
+        self.curriculum = curriculum
         self.started = started
         self.previous_elapsed = previous_elapsed
         self.rows = []
@@ -99,11 +101,21 @@ class Recorder(BaseCallback):
         fraction = min(1., self.num_timesteps / max(1., .75 * self.args.steps))
         with torch.no_grad():
             self.model.policy.log_std.fill_(-.5 - 2.5 * fraction)
-        self.training_env.env_method("set_tolerance", HARD_TOLERANCE)
+        if self.args.method == "curriculum":
+            promotion = self.curriculum.advance(self.num_timesteps)
+            if promotion is not None:
+                with (self.args.run_dir / "promotions.jsonl").open("a") as handle:
+                    handle.write(json.dumps(promotion) + "\n")
+                print("Promotion: " + json.dumps(promotion), flush=True)
+            tolerance = self.curriculum.tolerance
+        else:
+            tolerance = HARD_TOLERANCE
+        self.training_env.env_method("set_tolerance", tolerance)
 
     def _on_step(self):
         infos = self.locals["infos"]
         self.rows.extend(infos)
+        self.curriculum.observe(info["is_success"] for info in infos)
         return True
 
     def _on_rollout_end(self):
@@ -134,7 +146,7 @@ def train(args):
     args.run_dir.mkdir(parents=True, exist_ok=True)
     torch.set_num_threads(args.threads)
     started = time.monotonic()
-    tolerance = HARD_TOLERANCE
+    tolerance = .06 if args.method == "curriculum" else HARD_TOLERANCE
     env = DummyVecEnv([lambda i=i: Monitor(PrecisionReachEnv(
         seed=args.seed * 100000 + i, tolerance=tolerance)) for i in range(args.envs)])
     try:
@@ -148,7 +160,7 @@ def train(args):
         config = {key: value for key, value in vars(args).items()
                   if key not in ("resume", "max_seconds", "checkpoint_seconds", "run_dir")}
         root = Path(__file__).resolve().parent.parent
-        files = ["train_target.py", "reach_env.py", "env.py", "vision.py", "models.py", "io.py"]
+        files = ["train_target.py", "reach_env.py", "curriculum.py", "env.py", "vision.py", "models.py", "io.py"]
         sources = [root / "robovision" / name for name in files] + [root / "assets/cup_arm.xml"]
         source = {str(path.relative_to(root)): file_hash(path) for path in sources}
         metadata = {"task_version": VERSION, "config": config, "source_sha256": source,
@@ -170,11 +182,13 @@ def train(args):
             model._last_obs = env.reset()
             model._last_episode_starts = np.ones(args.envs, dtype=bool)
         model.policy.log_std.requires_grad_(False)
+        curriculum = ReachCurriculum(metadata.get("curriculum_state"))
         previous_elapsed = metadata["elapsed_seconds"]
-        callback = Recorder(args, started, previous_elapsed)
+        callback = Recorder(args, curriculum, started, previous_elapsed)
 
         def save():
-            metadata.update(elapsed_seconds=previous_elapsed + time.monotonic() - started,
+            metadata.update(curriculum_state=curriculum.state_dict(),
+                            elapsed_seconds=previous_elapsed + time.monotonic() - started,
                             complete=model.num_timesteps >= args.steps)
             checkpoint(model, args.run_dir, metadata)
 
@@ -200,7 +214,7 @@ def train(args):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--method", choices=["hard"], required=True)
+    parser.add_argument("--method", choices=["hard", "curriculum"], required=True)
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=101)
     parser.add_argument("--steps", type=int, default=32768)
