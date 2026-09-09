@@ -1,0 +1,41 @@
+{
+  "grasp.pt": {
+    "sha256": "a341723d898f163bf283811d25e17d34b7a45b90bec709a4857ae493476a2d3d"
+  },
+  "target_seed101_curriculum.pt": {
+    "sha256": "6b9352159c54e42cee95144ea30c4715b63cc8d18c15548f1fbbfe2b5670ad67"
+  },
+  "target_seed101_hard.pt": {
+    "sha256": "584636f9f1ef5b31ea683fff2c116731658a78e4e95fea72465c4a3a9e12479a"
+  },
+  "target_seed102_curriculum.pt": {
+    "sha256": "9aa9182202ecf7196c835f2b82b33384688b7fcbe045a642ec9794956ed7e535"
+  },
+  "target_seed102_hard.pt": {
+    "sha256": "d5bffbc6a383c26ea7d6a97f5b69b0b4de94c0c1031a8da83fec02e377d12314"
+  },
+  "target_seed103_curriculum.pt": {
+    "sha256": "27d3f65301749be958cc50e85eeda4a21bcb90aec14571b9e626e611b15949fd"
+  },
+  "target_seed103_hard.pt": {
+    "sha256": "4f19785b7458364edfd2e7d7ee144a065334ec74349448b1283afdd28ff743a6"
+  },
+  "target_seed104_curriculum.pt": {
+    "sha256": "87afece55707b41c8ec33b3d851b965d5d9bc19922e1812d750c9301279c5fda"
+  },
+  "target_seed104_hard.pt": {
+    "sha256": "2e9f71f6937eb5c3093d2ca1370411aea5d39c886a4378ca20ad366368027766"
+  },
+  "target_seed105_curriculum.pt": {
+    "sha256": "71295ee770bf30597465b44dbd110f22bcdff6d839b03b8453dd84b15a39e32d"
+  },
+  "target_seed105_hard.pt": {
+    "sha256": "fb6fc3270bc1cfff8234cd0f0fa1de41f72d538ab05acf213ae5e60c710bef21"
+  },
+  "target_seed106_curriculum.pt": {
+    "sha256": "c8eb3313b6a967d7304249629ed148484fc2b9d50b84e2e0eac078d2a5f072b6"
+  },
+  "target_seed106_hard.pt": {
+    "sha256": "d2dbfb35ee9f7d6eeca1032782683bef8aba08fe3c1e15e01f0a7ab1c53c15de"
+  }
+}

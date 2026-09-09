@@ -54,3 +54,13 @@ uv run python -m robovision train-target --method curriculum --run-dir runs/targ
 Runs save checkpoints about every two minutes and stop after a complete update. Use `--resume` to continue a run.
 
 The curriculum tightens the reaching tolerance through 60, 40, 25, 15, 10 and 6 mm. Each stage needs at least 2,048 interactions and 50% success over its latest 2,048 episodes before advancing. Use `--method hard` for the baseline.
+
+## Evaluation
+
+`models/` includes six pairs of approach policies and one shared grasp controller. Evaluation uses fixed test scenes and reports scores, confidence intervals, episode times and failures.
+
+```sh
+uv run python -m robovision evaluate --episodes 100 --out runs/evaluation.json
+```
+
+Use `--ablation black` to set the camera image to black, or `--ablation zero-grasp` to set the grasp network's weights to zero.

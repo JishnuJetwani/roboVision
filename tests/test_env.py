@@ -1,8 +1,15 @@
+from pathlib import Path
+
 import mujoco
 import numpy as np
 import pytest
+import torch
 
+from robovision.control import actuator_action, execute_approach, robot_features, run_neural_grasp
 from robovision.env import VisionCupEnv
+from robovision.models import load_grasp
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 @pytest.fixture
@@ -39,6 +46,20 @@ def test_inverse_kinematics_reaches_workspace_corners(env):
                 np.testing.assert_allclose(env.grasp_position, target, atol=1e-8)
 
 
+def test_opening_gripper_releases_lifted_cup(env):
+    target = env.cup_position[:2]
+    execute_approach(env, target)
+    info = run_neural_grasp(env, target, load_grasp(ROOT / 'models/grasp.pt'))
+    assert info['is_success']
+    assert all(info['contacts'])
+    height = env.cup_position[2]
+    for _ in range(35):
+        _, _, _, _, info = env.step([0, 0, 0, 1])
+    assert env.cup_position[2] < height - .05
+    assert info['clearance'] < .02
+    assert not all(info['contacts'])
+
+
 def test_tossing_cup_does_not_count_as_grasp(env):
     env.data.qvel[env._cup_vadr + 2] = 2
     rows = []
@@ -49,6 +70,24 @@ def test_tossing_cup_does_not_count_as_grasp(env):
             break
     assert max(row['clearance'] for row in rows) >= .06
     assert not any(row['is_success'] for row in rows)
+
+
+def test_table_supported_grip_is_not_success(env):
+    target = env.cup_position[:2]
+    execute_approach(env, target)
+    network = load_grasp(ROOT / 'models/grasp.pt')
+    for _ in range(100):
+        with torch.no_grad():
+            prediction = network(torch.from_numpy(robot_features(env, target))[None])[0].numpy()
+        _, _, _, _, info = env.step(actuator_action(env, target, prediction))
+        if all(info['contacts']):
+            break
+    assert all(info['contacts'])
+    assert info['clearance'] < .01
+    for _ in range(15):
+        _, _, _, _, info = env.step(actuator_action(env, target, [0, -1]))
+        assert not info['is_success']
+        assert info['clearance'] < .06
 
 
 def test_success_requires_unbroken_stable_hold(env, monkeypatch):
