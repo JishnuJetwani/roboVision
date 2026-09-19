@@ -5,6 +5,7 @@ import importlib
 
 def main():
     commands = {
+        "demo": ("demo", []),
         "evaluate": ("evaluate", []),
         "train-target": ("train_target", []),
         "collect": ("train_grasp", ["collect"]),

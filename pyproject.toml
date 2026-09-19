@@ -9,6 +9,9 @@ dependencies = [
   "stable-baselines3==2.7.0",
   "torch==2.8.0",
   "numpy==2.2.6",
+  "imageio==2.37.0",
+  "imageio-ffmpeg==0.6.0",
+  "pillow==11.3.0",
 ]
 
 [dependency-groups]

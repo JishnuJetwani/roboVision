@@ -64,3 +64,13 @@ uv run python -m robovision evaluate --episodes 100 --out runs/evaluation.json
 ```
 
 Use `--ablation black` to set the camera image to black, or `--ablation zero-grasp` to set the grasp network's weights to zero.
+
+## Demo
+
+[![Demo](assets/demo.png)](assets/demo.mp4)
+
+```sh
+uv run python -m robovision demo --out runs/demo.mp4
+```
+
+The video compares both methods on the same scenes and shows the policy's camera view. It includes the first three test scenes and the first curriculum failure for training seed 101.
