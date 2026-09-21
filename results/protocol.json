@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "training_seeds": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106
+  ],
+  "normal": {
+    "methods": [
+      "hard",
+      "curriculum"
+    ],
+    "scene_seed_start": 81000,
+    "episodes_per_model": 500
+  },
+  "interventions": {
+    "methods": [
+      "curriculum"
+    ],
+    "conditions": [
+      "black",
+      "zero_grasp"
+    ],
+    "scene_seed_start": 81000,
+    "episodes_per_model": 100
+  },
+  "demo": {
+    "training_seed": 101,
+    "scene_seeds": [
+      81000,
+      81001,
+      81002
+    ]
+  },
+  "execution": {
+    "approach_seconds": 0.8,
+    "grasp_control_hz": 20,
+    "maximum_grasp_steps": 160,
+    "stop_on_success": true,
+    "deterministic_actions": true
+  },
+  "scenario": {
+    "cup_x_range_m": [
+      0.25,
+      0.39
+    ],
+    "cup_y_range_m": [
+      -0.09,
+      0.09
+    ],
+    "cup_mass_kg": 0.08,
+    "grip_friction": 1.0,
+    "cup_color": "cyan",
+    "camera": "fixed oblique",
+    "image_shape": [
+      96,
+      96,
+      3
+    ]
+  },
+  "success": {
+    "minimum_bottom_clearance_m": 0.06,
+    "maximum_tilt_degrees": 20,
+    "maximum_cup_speed_m_s": 0.1,
+    "hold_seconds": 0.5,
+    "bilateral_finger_contact": true
+  },
+  "uncertainty": {
+    "unit": "paired approach-training seed",
+    "method": "Enumerate all 6^6 ordered bootstrap resamples of six paired differences; 2.5th and 97.5th percentiles.",
+    "conditioning": "One shared grasp controller and the same 500 test scenes."
+  },
+  "models": {
+    "target_pattern": "models/target_seed{seed}_{method}.pt",
+    "grasp": "models/grasp.pt"
+  },
+  "episode_columns": {
+    "training_seed": "Approach training seed.",
+    "scene_seed": "Environment reset seed.",
+    "intervention": "normal, black (set the camera image to zero), or zero_grasp (set grasp network weights to zero).",
+    "duration_seconds": "Simulated time including the 0.8-second approach.",
+    "upright_cosine": "Dot product of the cup axis with the vertical axis.",
+    "reason": "Why the episode ended."
+  }
+}

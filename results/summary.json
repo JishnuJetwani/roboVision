@@ -1,0 +1,89 @@
+{
+  "per_seed": [
+    {
+      "seed": 101,
+      "episodes_per_method": 500,
+      "hard": 65,
+      "curriculum": 488,
+      "difference_pp": 84.6
+    },
+    {
+      "seed": 102,
+      "episodes_per_method": 500,
+      "hard": 71,
+      "curriculum": 498,
+      "difference_pp": 85.4
+    },
+    {
+      "seed": 103,
+      "episodes_per_method": 500,
+      "hard": 49,
+      "curriculum": 493,
+      "difference_pp": 88.8
+    },
+    {
+      "seed": 104,
+      "episodes_per_method": 500,
+      "hard": 58,
+      "curriculum": 497,
+      "difference_pp": 87.8
+    },
+    {
+      "seed": 105,
+      "episodes_per_method": 500,
+      "hard": 61,
+      "curriculum": 500,
+      "difference_pp": 87.8
+    },
+    {
+      "seed": 106,
+      "episodes_per_method": 500,
+      "hard": 60,
+      "curriculum": 500,
+      "difference_pp": 88.0
+    }
+  ],
+  "aggregate": {
+    "hard": {
+      "successes": 364,
+      "episodes": 3000,
+      "success_rate": 0.12133333333333333,
+      "mean_duration_seconds": 8.053416666666667,
+      "mean_success_duration_seconds": 2.789010989010989,
+      "failure_categories": {
+        "timeout": 2624,
+        "out_of_bounds": 12
+      }
+    },
+    "curriculum": {
+      "successes": 2976,
+      "episodes": 3000,
+      "success_rate": 0.992,
+      "mean_duration_seconds": 2.68445,
+      "mean_success_duration_seconds": 2.641095430107527,
+      "failure_categories": {
+        "timeout": 19,
+        "out_of_bounds": 5
+      }
+    }
+  },
+  "difference_pp": 87.06666666666668,
+  "paired_seed_bootstrap_95_ci_pp": [
+    85.83333333333331,
+    88.2
+  ],
+  "bootstrap_resamples": 46656,
+  "unique_test_scenarios": 500,
+  "interventions": {
+    "black": {
+      "successes": 64,
+      "normal_successes": 591,
+      "episodes": 600
+    },
+    "zero_grasp": {
+      "successes": 0,
+      "normal_successes": 591,
+      "episodes": 600
+    }
+  }
+}

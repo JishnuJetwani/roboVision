@@ -1,4 +1,4 @@
-.PHONY: setup test demo
+.PHONY: setup test demo report
 
 setup:
 	uv sync --group dev
@@ -8,3 +8,6 @@ test:
 
 demo:
 	uv run python -m robovision demo
+
+report:
+	uv run python -m robovision report

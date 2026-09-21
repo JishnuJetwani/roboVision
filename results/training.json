@@ -1,0 +1,408 @@
+{
+  "approach": {
+    "algorithm": "PPO",
+    "task": "One target prediction followed by 0.8 seconds of actuator execution; binary alignment reward.",
+    "hardware": {
+      "gpu": "NVIDIA L4",
+      "python": "3.11.12",
+      "torch": "2.8.0+cu128"
+    },
+    "configuration": {
+      "steps": 32768,
+      "environments": 4,
+      "rollout_steps_per_environment": 128,
+      "batch_size": 256,
+      "epochs": 10,
+      "learning_rate": 0.0003,
+      "gamma": 0.0,
+      "gae_lambda": 1.0,
+      "clip_range": 0.2,
+      "target_kl": 0.04,
+      "entropy_coefficient": 0.0,
+      "actor_hidden_sizes": [
+        128,
+        64
+      ],
+      "activation": "ReLU",
+      "log_std_start": -0.5,
+      "log_std_end": -3.0,
+      "exploration_anneal_fraction": 0.75
+    },
+    "curriculum": {
+      "tolerances_m": [
+        0.06,
+        0.04,
+        0.025,
+        0.015,
+        0.01,
+        0.006
+      ],
+      "minimum_steps_per_stage": 2048,
+      "recent_episodes": 2048,
+      "promotion_success_rate": 0.5,
+      "apply_at": "rollout boundary"
+    },
+    "baseline": {
+      "tolerance_m": 0.006
+    },
+    "selection": "Final checkpoint at 32,768 interactions for every run.",
+    "runs": [
+      {
+        "seed": 101,
+        "method": "curriculum",
+        "model": "models/target_seed101_curriculum.pt",
+        "steps": 32768,
+        "elapsed_seconds": 411.77396147,
+        "initial_weights_sha256": "b440b8342d92cae2eed8124792ac202d03987dd5de7f3f8fdf3bf1e32f1ac27f",
+        "recorded_checkpoint_sha256": "88189e0cce0bcae2b18f5d15a2b40d5480c476d3f03b64d4505688c33beb0d8f",
+        "completed": true,
+        "promotions": [
+          {
+            "step": 5120,
+            "tolerance": 0.04,
+            "success_rate": 0.53515625
+          },
+          {
+            "step": 7168,
+            "tolerance": 0.025,
+            "success_rate": 0.525390625
+          },
+          {
+            "step": 10240,
+            "tolerance": 0.015,
+            "success_rate": 0.5341796875
+          },
+          {
+            "step": 15872,
+            "tolerance": 0.01,
+            "success_rate": 0.52099609375
+          },
+          {
+            "step": 20480,
+            "tolerance": 0.006,
+            "success_rate": 0.51806640625
+          }
+        ]
+      },
+      {
+        "seed": 101,
+        "method": "hard",
+        "model": "models/target_seed101_hard.pt",
+        "steps": 32768,
+        "elapsed_seconds": 403.30049704600003,
+        "initial_weights_sha256": "b440b8342d92cae2eed8124792ac202d03987dd5de7f3f8fdf3bf1e32f1ac27f",
+        "recorded_checkpoint_sha256": "654363f1cf9150d31891f9b146aa6cba0cbe59d910b0ea2963cb1bbbd9b6c300",
+        "completed": true,
+        "promotions": []
+      },
+      {
+        "seed": 102,
+        "method": "curriculum",
+        "model": "models/target_seed102_curriculum.pt",
+        "steps": 32768,
+        "elapsed_seconds": 397.778962246,
+        "initial_weights_sha256": "3a8dfb8da95c7f2764f24af1a3632762ef72a23f8f00fc8c3895c1efd46467a6",
+        "recorded_checkpoint_sha256": "c5e10bc9acc2637377e6145e5a8edd50729b2037f561902502aa2d6f62be1e4e",
+        "completed": true,
+        "promotions": [
+          {
+            "step": 5120,
+            "tolerance": 0.04,
+            "success_rate": 0.5341796875
+          },
+          {
+            "step": 7168,
+            "tolerance": 0.025,
+            "success_rate": 0.52490234375
+          },
+          {
+            "step": 9728,
+            "tolerance": 0.015,
+            "success_rate": 0.515625
+          },
+          {
+            "step": 15360,
+            "tolerance": 0.01,
+            "success_rate": 0.5087890625
+          },
+          {
+            "step": 19968,
+            "tolerance": 0.006,
+            "success_rate": 0.51953125
+          }
+        ]
+      },
+      {
+        "seed": 102,
+        "method": "hard",
+        "model": "models/target_seed102_hard.pt",
+        "steps": 32768,
+        "elapsed_seconds": 400.618956485,
+        "initial_weights_sha256": "3a8dfb8da95c7f2764f24af1a3632762ef72a23f8f00fc8c3895c1efd46467a6",
+        "recorded_checkpoint_sha256": "598398fdf2a9becdc4a6d8739883887085eddd4b3ea8f51377dd151216e53416",
+        "completed": true,
+        "promotions": []
+      },
+      {
+        "seed": 103,
+        "method": "curriculum",
+        "model": "models/target_seed103_curriculum.pt",
+        "steps": 32768,
+        "elapsed_seconds": 402.806015799,
+        "initial_weights_sha256": "0b4d496bf31cab123119f9fd1447ec663fd1c0c07a0b9de1f0e41208bf634c84",
+        "recorded_checkpoint_sha256": "05ac35acb1be9d4ecd5782468b6afd991fddea3ce4f5e024db40794dd3f92602",
+        "completed": true,
+        "promotions": [
+          {
+            "step": 5120,
+            "tolerance": 0.04,
+            "success_rate": 0.51904296875
+          },
+          {
+            "step": 7168,
+            "tolerance": 0.025,
+            "success_rate": 0.50830078125
+          },
+          {
+            "step": 9728,
+            "tolerance": 0.015,
+            "success_rate": 0.5048828125
+          },
+          {
+            "step": 15872,
+            "tolerance": 0.01,
+            "success_rate": 0.5244140625
+          },
+          {
+            "step": 19968,
+            "tolerance": 0.006,
+            "success_rate": 0.51416015625
+          }
+        ]
+      },
+      {
+        "seed": 103,
+        "method": "hard",
+        "model": "models/target_seed103_hard.pt",
+        "steps": 32768,
+        "elapsed_seconds": 400.838256367,
+        "initial_weights_sha256": "0b4d496bf31cab123119f9fd1447ec663fd1c0c07a0b9de1f0e41208bf634c84",
+        "recorded_checkpoint_sha256": "cfc8b389cc323b088127ae9b802747d2782e73bd03b2a7ed782c2e9355caf0e2",
+        "completed": true,
+        "promotions": []
+      },
+      {
+        "seed": 104,
+        "method": "curriculum",
+        "model": "models/target_seed104_curriculum.pt",
+        "steps": 32768,
+        "elapsed_seconds": 403.41008005400005,
+        "initial_weights_sha256": "6d92df86d565cb7d509dd79679c94f8672d368bfc223f72429e773eea934a18a",
+        "recorded_checkpoint_sha256": "b7d2d30a2d91b9b1eb761bdaadaf5b37f6db671cae6527c6926dc593387ea23c",
+        "completed": true,
+        "promotions": [
+          {
+            "step": 5632,
+            "tolerance": 0.04,
+            "success_rate": 0.5576171875
+          },
+          {
+            "step": 7680,
+            "tolerance": 0.025,
+            "success_rate": 0.501953125
+          },
+          {
+            "step": 10752,
+            "tolerance": 0.015,
+            "success_rate": 0.501953125
+          },
+          {
+            "step": 15872,
+            "tolerance": 0.01,
+            "success_rate": 0.52099609375
+          },
+          {
+            "step": 19456,
+            "tolerance": 0.006,
+            "success_rate": 0.50048828125
+          }
+        ]
+      },
+      {
+        "seed": 104,
+        "method": "hard",
+        "model": "models/target_seed104_hard.pt",
+        "steps": 32768,
+        "elapsed_seconds": 402.744676088,
+        "initial_weights_sha256": "6d92df86d565cb7d509dd79679c94f8672d368bfc223f72429e773eea934a18a",
+        "recorded_checkpoint_sha256": "1f12486d55152dc1876800c6b5f72f97205f481b6d79c56b1efb1eae0843ad5a",
+        "completed": true,
+        "promotions": []
+      },
+      {
+        "seed": 105,
+        "method": "curriculum",
+        "model": "models/target_seed105_curriculum.pt",
+        "steps": 32768,
+        "elapsed_seconds": 411.433260934,
+        "initial_weights_sha256": "04e7b74969602e8c145b774beb5ffcfd70d11da60bcc41b71e3740886c90fd58",
+        "recorded_checkpoint_sha256": "b29f21f77c86571d307114024d7ba0b33a167a16ae1086aaad220e8ee1def16e",
+        "completed": true,
+        "promotions": [
+          {
+            "step": 5632,
+            "tolerance": 0.04,
+            "success_rate": 0.533203125
+          },
+          {
+            "step": 7680,
+            "tolerance": 0.025,
+            "success_rate": 0.5126953125
+          },
+          {
+            "step": 10240,
+            "tolerance": 0.015,
+            "success_rate": 0.53173828125
+          },
+          {
+            "step": 15360,
+            "tolerance": 0.01,
+            "success_rate": 0.51025390625
+          },
+          {
+            "step": 19456,
+            "tolerance": 0.006,
+            "success_rate": 0.505859375
+          }
+        ]
+      },
+      {
+        "seed": 105,
+        "method": "hard",
+        "model": "models/target_seed105_hard.pt",
+        "steps": 32768,
+        "elapsed_seconds": 402.583629763,
+        "initial_weights_sha256": "04e7b74969602e8c145b774beb5ffcfd70d11da60bcc41b71e3740886c90fd58",
+        "recorded_checkpoint_sha256": "0b10d6b7871643e4c95b6e6b77bf7440d18f8d6275b886fd248da8828e85b871",
+        "completed": true,
+        "promotions": []
+      },
+      {
+        "seed": 106,
+        "method": "curriculum",
+        "model": "models/target_seed106_curriculum.pt",
+        "steps": 32768,
+        "elapsed_seconds": 405.230731949,
+        "initial_weights_sha256": "f6f99e54ad38ba84debab2683c84d5ec1c85a47eef52fea87cbf53519eac0c54",
+        "recorded_checkpoint_sha256": "341122579092feb7650f4105e035b7d6f4f8d6879b72dc963a308609a8057f1e",
+        "completed": true,
+        "promotions": [
+          {
+            "step": 5120,
+            "tolerance": 0.04,
+            "success_rate": 0.52001953125
+          },
+          {
+            "step": 7680,
+            "tolerance": 0.025,
+            "success_rate": 0.55810546875
+          },
+          {
+            "step": 10240,
+            "tolerance": 0.015,
+            "success_rate": 0.53076171875
+          },
+          {
+            "step": 15360,
+            "tolerance": 0.01,
+            "success_rate": 0.52392578125
+          },
+          {
+            "step": 19968,
+            "tolerance": 0.006,
+            "success_rate": 0.5166015625
+          }
+        ]
+      },
+      {
+        "seed": 106,
+        "method": "hard",
+        "model": "models/target_seed106_hard.pt",
+        "steps": 32768,
+        "elapsed_seconds": 408.13388618500005,
+        "initial_weights_sha256": "f6f99e54ad38ba84debab2683c84d5ec1c85a47eef52fea87cbf53519eac0c54",
+        "recorded_checkpoint_sha256": "a54fca0dee1af6b77e4ad4ceaa352f1d0c3ee6461f7585c07c80b25ecd0ad6b8",
+        "completed": true,
+        "promotions": []
+      }
+    ]
+  },
+  "grasp": {
+    "algorithm": "Behavior cloning",
+    "configuration": {
+      "updates": 5000,
+      "batch_size": 128,
+      "learning_rate": 0.0003,
+      "hidden_sizes": [
+        64,
+        64
+      ],
+      "activation": "Tanh",
+      "optimizer": "Adam",
+      "loss": "MSE",
+      "gradient_norm_clip": 1.0
+    },
+    "collection": {
+      "path": "data/grasp_demonstrations.npz",
+      "start_height_m": 0.45,
+      "attempts": 600,
+      "successes": 600,
+      "transitions": 22217,
+      "elapsed_seconds": 17.69501312499051,
+      "sha256": "544a676d47c6d94c520d665b29caf046149c2ac4e209531030ed32c51b3c1cb8",
+      "seed_start": 300000,
+      "seed_end": 300599
+    },
+    "split": {
+      "training_episodes": 480,
+      "validation_episodes": 120,
+      "rule": "Every fifth successful episode is reserved for validation."
+    },
+    "augmentation": {
+      "action_noise_probability": 0.2,
+      "action_noise_standard_deviation": 0.15,
+      "initial_xy_noise_m": 0.004,
+      "finger_opening_range_m": [
+        0.038,
+        0.045
+      ]
+    },
+    "training": {
+      "model": "models/grasp.pt",
+      "seed": 201,
+      "updates": 5000,
+      "elapsed_seconds": 1.5039780839870218,
+      "validation_mse": 0.010659124702215195,
+      "model_sha256": "a341723d898f163bf283811d25e17d34b7a45b90bec709a4857ae493476a2d3d"
+    },
+    "development": {
+      "scene_seeds": [
+        8300,
+        8399
+      ],
+      "aligned_starts": true,
+      "successes": 100,
+      "episodes": 100
+    },
+    "integrated_development": {
+      "approach_seed": 101,
+      "scene_seeds": [
+        8400,
+        8499
+      ],
+      "hard_successes": 12,
+      "curriculum_successes": 99,
+      "episodes_per_method": 100
+    }
+  }
+}

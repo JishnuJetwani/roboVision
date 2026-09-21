@@ -11,6 +11,7 @@ def main():
         "collect": ("train_grasp", ["collect"]),
         "train-grasp": ("train_grasp", ["train"]),
         "validate-grasp": ("train_grasp", ["validate"]),
+        "report": ("report", []),
     }
     parser = argparse.ArgumentParser(description="Vision-guided cup grasping")
     parser.add_argument("command", choices=commands)

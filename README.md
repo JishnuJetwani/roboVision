@@ -4,73 +4,75 @@ A simulated arm that finds, grips and lifts a cup in MuJoCo. PPO chooses where t
 
 The experiment compares a fixed reaching tolerance with a curriculum that tightens the tolerance as the policy improves.
 
-## Setup
+[![Demo](assets/demo.png)](assets/demo.mp4)
+
+## Run
 
 Requires Python 3.11 and [uv](https://docs.astral.sh/uv/).
 
 ```sh
 uv sync --group dev
+uv run python -m robovision demo --out runs/demo.mp4
 ```
 
-## Environment
+The video compares both methods on the same scenes and shows the policy's camera view. It includes the first three test scenes and the first curriculum failure for training seed 101.
 
-The arm has base, shoulder, elbow and wrist joints, plus a parallel-jaw gripper. It lifts a hollow cup through finger contact, using finite-force actuators.
+## How it works
 
-`VisionCupEnv` takes four actions: X, Y and Z movement, and jaw opening. Observations contain two 96 x 96 RGB frames and the robot's state.
+1. A fixed 96 x 96 RGB camera observes the table. Color segmentation measures the cyan cup's position and shape in the image.
+2. PPO uses those measurements and the robot's state to choose an XY target. Inverse kinematics moves the hand above it.
+3. The behavior-cloned network moves the hand vertically and opens or closes the jaws at 20 Hz. An XY servo holds the chosen target.
+
+The policies receive camera features and robot state. Simulator cup coordinates are used for demonstrations, rewards and evaluation. The arm lifts the cup through finger contact, with finite-force actuators and no grasp attachments.
 
 Success requires a 0.5-second hold with both fingers touching and the cup's bottom at least 6 cm above the table. During the hold, tilt must stay below 20 degrees and speed below 0.1 m/s.
 
-```sh
-uv run pytest -q
-```
+## Curriculum experiment
 
-## Policies
+The approach policy makes one decision per episode and gets a binary reaching reward. Hard-only training requires 6 mm accuracy from the start. The curriculum starts at 60 mm and tightens to 6 mm. Each stage needs at least 2,048 interactions and 50% success over its latest 2,048 episodes before advancing.
 
-Color segmentation measures the cyan cup's position and shape in the image. The target network uses these measurements and the robot's state to choose an XY target. A second network takes twelve robot measurements and controls vertical motion and jaw opening.
+Both methods use the same network, starting weights for each seed pair, exploration schedule and budget of 32,768 interactions. They share one grasp controller.
 
-Checkpoint loaders check the model version and load tensor weights.
+| Approach training | Physical grasp successes | Success rate |
+| --- | ---: | ---: |
+| Hard-only PPO | 364/3,000 | 12.1% |
+| Curriculum PPO | 2,976/3,000 | 99.2% |
 
-Inverse kinematics moves the hand above the chosen target. An XY servo holds it while the grasp network controls vertical motion and the jaws at 20 Hz. The controllers receive no simulator cup coordinates or contact flags.
+Each method was trained with six seeds and tested on the same 500 held-out scenes, giving 3,000 attempts per method. This comparison uses sparse, binary reaching rewards.
 
-## Grasp training
+On matching test scenes, blacking out the camera reduced curriculum success from 591/600 to 64/600. Setting the grasp network's weights to zero gave 0/600.
 
-A scripted teacher collects demonstrations with the hand aligned above the cup and small changes to its actions. Behavior cloning uses separate training and validation episodes. Demonstrations are included in `data/grasp_demonstrations.npz`.
+![Training progress](results/learning_curve.png)
+
+[Full results](results/README.md) include scores for each seed, confidence intervals, failures and training times.
+
+## Train and evaluate
+
+Demonstrations are included in `data/grasp_demonstrations.npz`. To collect a new set and train the grasp controller:
 
 ```sh
 uv run python -m robovision collect --out runs/demonstrations.npz --episodes 600
-uv run python -m robovision train-grasp --data data/grasp_demonstrations.npz --out runs/grasp --seed 201 --max-seconds 1200
+uv run python -m robovision train-grasp --data runs/demonstrations.npz --out runs/grasp --seed 201 --max-seconds 1200
 ```
 
-Add `--resume` to the same training command to continue from the saved training state.
-
-## Approach training
-
-PPO chooses one XY target per episode and gets a binary reaching reward. Hard-only training requires 6 mm accuracy from the start.
+Train the approach policy. Use `--method hard` for the baseline.
 
 ```sh
 uv run python -m robovision train-target --method curriculum --run-dir runs/target --seed 101 --max-seconds 1200
 ```
 
-Runs save checkpoints about every two minutes and stop after a complete update. Use `--resume` to continue a run.
+Training saves the model and training state about every two minutes and when stopped. Runs stop after 20 minutes, once the current update finishes. Add `--resume` to the same command to continue. The recorded approach runs took about seven minutes each on an NVIDIA L4.
 
-The curriculum tightens the reaching tolerance through 60, 40, 25, 15, 10 and 6 mm. Each stage needs at least 2,048 interactions and 50% success over its latest 2,048 episodes before advancing. Use `--method hard` for the baseline.
+These commands save the approach model to `runs/target/target.pt` and the grasp model to `runs/grasp/checkpoint.pt`.
 
-## Evaluation
-
-`models/` includes six pairs of approach policies and one shared grasp controller. Evaluation uses fixed test scenes and reports scores, confidence intervals, episode times and failures.
+Evaluate an included model, rebuild the results or run the tests:
 
 ```sh
-uv run python -m robovision evaluate --episodes 100 --out runs/evaluation.json
+uv run python -m robovision evaluate --target models/target_seed101_curriculum.pt --grasp models/grasp.pt --episodes 100 --out runs/evaluation.json
+uv run python -m robovision report
+uv run pytest
 ```
 
-Use `--ablation black` to set the camera image to black, or `--ablation zero-grasp` to set the grasp network's weights to zero.
+## Scope
 
-## Demo
-
-[![Demo](assets/demo.png)](assets/demo.mp4)
-
-```sh
-uv run python -m robovision demo --out runs/demo.mp4
-```
-
-The video compares both methods on the same scenes and shows the policy's camera view. It includes the first three test scenes and the first curriculum failure for training seed 101.
+The camera, cup shape, color, mass and friction are fixed. Vision uses color segmentation and an MLP. Other cup appearances, camera positions and real hardware have not been tested. The grasp controller holds the chosen XY target, so it cannot correct a poor target prediction.
