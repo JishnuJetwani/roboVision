@@ -1,0 +1,13 @@
+{
+  "schema": "robovision-policy-export-v1",
+  "role": "approach",
+  "purpose": "Load and verify the bundled checkpoint for inference and frozen evaluation.",
+  "version": "hierarchical-force-ppo-v1",
+  "checkpoints": [
+    {
+      "checkpoint": "policy.zip",
+      "policy_sha256": "85abea633e802547a5fb7599acdc4fb34264ba351f16ec8901bb4e77332d4cea",
+      "steps": 2261504
+    }
+  ]
+}

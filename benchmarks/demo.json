@@ -1,0 +1,59 @@
+{
+  "case_index": 152,
+  "seed": 741000152,
+  "height": 0.13979596828259655,
+  "cup_offset": [
+    0.0,
+    0.0
+  ],
+  "seed_provenance": "Registered centered-height evaluation scene",
+  "selection": "Highest start in the 200 registered evaluation scenes",
+  "initial_cup_position": [
+    0.32,
+    0.0,
+    0.296
+  ],
+  "initial_hand_position": [
+    0.32000000000000006,
+    0.0,
+    0.44979596828259666
+  ],
+  "sources": [
+    {
+      "role": "manager",
+      "run": "modal-hier-ordered-fullstart-20260915-v1",
+      "checkpoint": "step-9472.zip",
+      "sha256": "254c0140a54285cf780cad8075818cf1b1eda500cac8efc7071ba8b5e871ef0d",
+      "recorded_steps": 9472
+    },
+    {
+      "role": "approach",
+      "run": "modal-hier-centered-approach-20260912-v1",
+      "checkpoint": "policy.zip",
+      "sha256": "85abea633e802547a5fb7599acdc4fb34264ba351f16ec8901bb4e77332d4cea",
+      "recorded_steps": 2261504
+    },
+    {
+      "role": "pickup",
+      "run": "modal-hier-grasp-arrivals-stage2-20260913-v1",
+      "checkpoint": "step-1944064.zip",
+      "sha256": "f0cb019ea56a1918910a75dabac4e3c871373a0d899e93346fb19fdea0e462e7",
+      "recorded_steps": 1944064
+    }
+  ],
+  "centered_success": true,
+  "reason": "success",
+  "total_actions": 217,
+  "physical_duration_seconds": 4.34,
+  "new_training_steps": 0,
+  "source_and_policy_hashes_unchanged": true,
+  "video_sha256": "5b42a4ac74c2447b14dcbfb6d4a00ffa46c897ed549bb19bd8af3d4bff7e5aec",
+  "frame_indices": [
+    0,
+    43,
+    86,
+    130,
+    173,
+    217
+  ]
+}

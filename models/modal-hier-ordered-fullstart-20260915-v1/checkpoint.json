@@ -1,0 +1,28 @@
+{
+  "schema": "robovision-policy-export-v1",
+  "role": "manager",
+  "purpose": "Load and verify the bundled checkpoint for inference and frozen evaluation.",
+  "version": "ordered-terminal-pickup-manager-v1",
+  "checkpoints": [
+    {
+      "checkpoint": "step-9472.zip",
+      "policy_sha256": "254c0140a54285cf780cad8075818cf1b1eda500cac8efc7071ba8b5e871ef0d",
+      "steps": 9472
+    }
+  ],
+  "duration": {
+    "option_steps": 5
+  },
+  "experts": [
+    {
+      "run": "modal-hier-centered-approach-20260912-v1",
+      "checkpoint": "policy.zip",
+      "policy_sha256": "85abea633e802547a5fb7599acdc4fb34264ba351f16ec8901bb4e77332d4cea"
+    },
+    {
+      "run": "modal-hier-grasp-arrivals-stage2-20260913-v1",
+      "checkpoint": "step-1944064.zip",
+      "policy_sha256": "f0cb019ea56a1918910a75dabac4e3c871373a0d899e93346fb19fdea0e462e7"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "robovision-policy-export-v1",
+  "role": "pickup",
+  "purpose": "Load and verify the bundled checkpoint for inference and frozen evaluation.",
+  "version": "hierarchical-force-ppo-v1",
+  "checkpoints": [
+    {
+      "checkpoint": "step-1944064.zip",
+      "policy_sha256": "f0cb019ea56a1918910a75dabac4e3c871373a0d899e93346fb19fdea0e462e7",
+      "steps": 1944064
+    }
+  ]
+}
