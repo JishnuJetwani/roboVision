@@ -43,6 +43,18 @@ and training-counter fingerprints before and after evaluation. Repeating the sam
 scene set is a reproducibility check, not another independent sample. Use
 `--device cuda` on a CUDA machine; CPU is the local default.
 
+To evaluate camera dependence on the current centered task:
+
+```sh
+uv run python -m robovision evaluate-final --out runs/centered-ablation --conditions normal frozen
+```
+
+This runs 200 episodes per condition. Frozen repeats the initial image pair
+while leaving robot-state inputs unchanged. The recorded camera ablation uses
+this centered scene set and the bundled checkpoints. It was measured on CPU on
+September 23, 2026; the original 199/200 confirmation was measured separately on an
+NVIDIA L4.
+
 ## Training
 
 | Stage | Implementation | Cloud launcher |

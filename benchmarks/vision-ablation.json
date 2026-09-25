@@ -1,0 +1,6158 @@
+{
+  "evaluation": "Paired camera ablation on centered height-curriculum starts",
+  "measured_on": "2026-09-23",
+  "device": "cpu",
+  "source_run": "centered-camera-confirmation-20260923",
+  "source_progress_sha256": "0eb2d936bc3b0790be29376b7a5b079a04fc6d0491cf7a36b5074b50d22d9918",
+  "record_selection": "All episodes from the completed normal and frozen camera conditions.",
+  "protocol": {
+    "seed": 741000000,
+    "episodes_per_condition": 200,
+    "paired_conditions": [
+      "normal",
+      "frozen"
+    ],
+    "height_offset_m": [
+      0.025,
+      0.14
+    ],
+    "fixed_cup_xy_m": [
+      0.32,
+      0.0
+    ],
+    "initial_hand_xy": "Directly above the cup",
+    "deterministic": true,
+    "option_steps": 5,
+    "physical_action_deadline": 500,
+    "conditions": {
+      "normal": "Live RGB frames every step",
+      "frozen": "Two-frame reset image repeated throughout each episode"
+    },
+    "image_transform_applies_to": "Both image frames for manager and force experts; proprioception unchanged"
+  },
+  "sources": [
+    {
+      "role": "manager",
+      "run": "modal-hier-ordered-fullstart-20260915-v1",
+      "checkpoint": "step-9472.zip",
+      "sha256": "254c0140a54285cf780cad8075818cf1b1eda500cac8efc7071ba8b5e871ef0d"
+    },
+    {
+      "role": "approach",
+      "run": "modal-hier-centered-approach-20260912-v1",
+      "checkpoint": "policy.zip",
+      "sha256": "85abea633e802547a5fb7599acdc4fb34264ba351f16ec8901bb4e77332d4cea"
+    },
+    {
+      "role": "pickup",
+      "run": "modal-hier-grasp-arrivals-stage2-20260913-v1",
+      "checkpoint": "step-1944064.zip",
+      "sha256": "f0cb019ea56a1918910a75dabac4e3c871373a0d899e93346fb19fdea0e462e7"
+    }
+  ],
+  "scores": {
+    "normal": {
+      "episodes": 200,
+      "errors": 0,
+      "centered_successes": 200,
+      "original_successes": 200,
+      "centered_success_rate": 1.0,
+      "centered_wilson95": [
+        0.9811546736227335,
+        1.0
+      ],
+      "high100plus_episodes": 78,
+      "high100plus_centered_successes": 78,
+      "physical_actions": 27339,
+      "physical_action_attempts": 27339,
+      "manager_decisions": 2230,
+      "failures": {}
+    },
+    "frozen": {
+      "episodes": 200,
+      "errors": 0,
+      "centered_successes": 0,
+      "original_successes": 0,
+      "centered_success_rate": 0.0,
+      "centered_wilson95": [
+        1.734723475976807e-18,
+        0.018845326377266575
+      ],
+      "high100plus_episodes": 78,
+      "high100plus_centered_successes": 0,
+      "physical_actions": 11069,
+      "physical_action_attempts": 11069,
+      "manager_decisions": 2298,
+      "failures": {
+        "table_collision": 200
+      }
+    }
+  },
+  "paired_ablation_drops": {
+    "frozen": {
+      "paired_episodes": 200,
+      "centered_success_count_drop": 200,
+      "normal_success_ablation_failure": 200,
+      "normal_failure_ablation_success": 0
+    }
+  },
+  "new_training_steps": 0,
+  "interpretation": "Measures sensitivity to removing visual updates; does not establish robustness to unfamiliar visual inputs.",
+  "evaluation_source_sha256": {
+    "robovision/__init__.py": "62bcf9f1c80a88c459c68f27715afb310e15f179382a3f3445fda5d471f33d59",
+    "robovision/__main__.py": "a34a91a14096b16bbd70dca46d5f1d996e00c2f8a199a35e0d149cb4d50904bb",
+    "robovision/adaptive_pickup.py": "ff20c1617d4d17c63948d2c1e6a12d87e5d6f56cbee7ffed34e0ee8c41601540",
+    "robovision/approach_bridge.py": "0c6a1de7e5a951f487ee98508fd29f7270939a5c946e56f3d306895f951c3073",
+    "robovision/approach_subtask.py": "bb07e3a2f152373a59d5d35c14b57deb6e6fa246d642b8e3177abe394348f497",
+    "robovision/centered_approach_skill.py": "044c8efec597ecf8cb5da14d8e2eaf0304424da8d143bfd8cec683e5e2ade0e7",
+    "robovision/centered_arrival_env.py": "542d3d1206d464a6895d1b10d28d704c1090794903a3cdf21bfd4c2ef7df9279",
+    "robovision/centered_grasp_bootstrap.py": "efb27adc14345ef96d803f3d8cc3b4d20edb35339f6f9a760280591bdb1a07ec",
+    "robovision/centered_grasp_env.py": "bfca988173b224ece6fcbb0fe8dd3fc8854c36ba5305cb5ea9d8908035193b2f",
+    "robovision/closure_potential.py": "79deab1eb5be28355275e454d3a76d6f799a5380111d60ce042a8ad3674ed83a",
+    "robovision/cnn.py": "7891bb2ba6376728a41422a48202bd7fb3200b8f68e5cf5ff480ccf19f03e7fd",
+    "robovision/context_exploration.py": "1674f6b2eb64cbec84cf4d7e20293a905ffa89af8cc631af4c257f396a4e0536",
+    "robovision/decoupled_ppo.py": "de64bfedff98f4f9359fd220d54442bcdc36273bfb1ec9b7af5e8b19853d53ee",
+    "robovision/demo.py": "68fa70d1633dbdcec9cca9dac409a3e8d2e81e2b3e9d5f0b5c659dfae4170bc1",
+    "robovision/dense_approach.py": "e3c9aa5bf1f354004a042e6e467365830292f476288a12d0a3bb9150355d544e",
+    "robovision/env.py": "6f6823959d98f3d8fc5c79579dbb0a09f70825be187bd7a0d2d53d47e219c934",
+    "robovision/evaluate_joint.py": "959c7ef46107f2f02f1ae3c118ae76bc48222c687ab1001df9a68d1fbce4dc09",
+    "robovision/fine_pickup.py": "9fd8c53c37a359ce409e7f5c79dcf97c20af2ba1201ab52748c527b1a2a98057",
+    "robovision/generalization_env.py": "0d1f847a2e33b359837ff4635bc1d564fcf311574ec529f8739518fef27f63a3",
+    "robovision/grasp_band.py": "9be86ed14f00bcfb8842086c43617d0015ce6ceb2eb3ebade1d2291bdad89f71",
+    "robovision/grasp_benchmark.py": "25294a4e3b83febeae09786337bfcbbaa4303c5ff2cd7d43c043939ba40a6006",
+    "robovision/grasp_reward.py": "42f7d859a3762e6a9d19e11ce145dc4301118320aa2f61e9ccf1038c05bbd8f7",
+    "robovision/hierarchical_policy.py": "3038ae149785801b5164cb1732608476766e8e7f4d2bb8d4a3b5a16578a79034",
+    "robovision/hierarchical_replay.py": "b5b5e7867325b4007465590ee132224a18e78e2a3c3f8b4f75ac9bfdac7da9ec",
+    "robovision/hierarchical_skills.py": "4d20e15fe9aea9cbbbcf61a6597d7c7d0d53ade5787886c0fdb51a27abc71d76",
+    "robovision/hover_bootstrap.py": "0fa2d4a596bd128cc3d8c144ac2823cbd06208563e41b7a993af613e5de316be",
+    "robovision/io.py": "ec4f21844284e54f06b1fdab6e8ba5412d24f88c190e33ea751e096fe460af5b",
+    "robovision/joint_env.py": "72e5471ed4143f618c823d7750324bd91f60d380532a66255602b2d9e8ef657d",
+    "robovision/manager_support.py": "63a5aa34e44fe1d3643c4dde58076a9bdac0f49c4cc60b59ac61794c1adb03a6",
+    "robovision/near_pickup.py": "11cba2be68c1e1b4f8c47d6713ac74d566bc5adfb0abdb747abb89a237e39da3",
+    "robovision/open_bootstrap.py": "6f054ad9948cc5ac5a7ad11ef45ce1ea5a0b3890fca15dfe712fa36c1dbf5f46",
+    "robovision/ordered_confirmation.py": "e286db870c459bb4ab2dc392cfaa0a8ffccabd80fa9b05cd453beb10768ef181",
+    "robovision/ordered_pickup_policy.py": "c622178ea3581db1d5691377244e4ae81f4a095fa4a8d367d22fe7b4da5069a2",
+    "robovision/pickup_evaluation.py": "0736da7818e05579dbf1575c165543e914d7992103c18446506069f34b88b083",
+    "robovision/policy_loading.py": "5028fc4c64a36f9472866cb986ec1fc0b9b25ba24d7cd0ad1b7d0aab7a798d4b",
+    "robovision/policy_metrics.py": "8fda99521f3f3c93bfc8d500436f1347771ab323902cdd394f9233b4b3581d06",
+    "robovision/policy_state.py": "facface55a38eb041505d58c0aa7f2fb9a5ed988e539eb4f7294cb0ccf5a9c9d",
+    "robovision/project.py": "dff512260ec99a7b130e2c29183d1d9bf9bed285d5f9cf39f40943fa6ab8b5d7",
+    "robovision/reverse_curriculum.py": "3c1983ead8d1d2e4d77ab02c9a8c405f5fb1db17b94b1b671de0146ab872ee47",
+    "robovision/reward_scale.py": "0043f3cca7023a23547c5d72aa7ca931bf0d222cf3673732f9b98841375e0cb4",
+    "robovision/role_ppo.py": "af6173293eca6b9b416fe3ba9a6e951f4c3b1eb61a1bc7675f62070b2619d9e4",
+    "robovision/skill_hard_evaluation.py": "dbac9447d61dcf8e532652b18fbf91bbcc2c3e2e5b19a91a4bee86f371d8476e",
+    "robovision/skill_state.py": "a0016f41ecccf918ffd773304eb17e34189ac99457f13e6e08e5666a333c1a05",
+    "robovision/skill_video.py": "67ec0e666f0817178e0c8dcf276c5de5295d3645170172fa37c2e8ad61635ecc",
+    "robovision/structured_exploration.py": "d0b9bb635fc9bdb71dbcd97a65446ad3f337a669a9dd2c1b42c9b6677f40bef4",
+    "robovision/torch_precision.py": "db4018a0351e21935882adc78b0de0df96f719732001d7fb7629fd732ef59d85",
+    "robovision/train_hierarchical.py": "b077cca900d3c74b03a2b74de32b6cd158ba315b3c231dd67f0c74447b298b4c",
+    "robovision/train_joint.py": "e83a07d4d6d9c090c3189b34e1955e775234ca22bf6f30b3795a5d434d12ca4f",
+    "robovision/train_ordered_pickup.py": "ccd3bbfd14861df7e2a56840014f681921e74fa2e8395cf9752c84260be49a50",
+    "robovision/train_skill_curriculum.py": "adb3a80f7523c53fd3fec5491fa7ddd2fcccb45b2d7b370e87c0304d3190aa2c",
+    "robovision/training_checkpoint.py": "477de14936cca2c54d89fa5eeda5c0107d7e962ce0d7986e30dec019666876c5",
+    "assets/cup_arm.xml": "c7d68fe49b97428e85473b7498e167ce26bf20660db0d9c33b88967941c08dab",
+    "scripts/ordered_confirmation_modal.py": "62072855f46b9f3aacc1cb1587e99e32602f7332b60f37bf6b87836c8df83d04"
+  },
+  "rows": [
+    {
+      "case_index": 0,
+      "seed": 741000000,
+      "height": 0.1391434279840487,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 214,
+      "commit_step": 75
+    },
+    {
+      "case_index": 1,
+      "seed": 741000001,
+      "height": 0.0691895096498713,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 124,
+      "commit_step": 40
+    },
+    {
+      "case_index": 2,
+      "seed": 741000002,
+      "height": 0.10437276577727463,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 142,
+      "commit_step": 60
+    },
+    {
+      "case_index": 3,
+      "seed": 741000003,
+      "height": 0.1368590321726703,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 209,
+      "commit_step": 75
+    },
+    {
+      "case_index": 4,
+      "seed": 741000004,
+      "height": 0.11718456139699203,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 143,
+      "commit_step": 65
+    },
+    {
+      "case_index": 5,
+      "seed": 741000005,
+      "height": 0.10590280623255821,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 141,
+      "commit_step": 60
+    },
+    {
+      "case_index": 6,
+      "seed": 741000006,
+      "height": 0.10920703696742029,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 137,
+      "commit_step": 60
+    },
+    {
+      "case_index": 7,
+      "seed": 741000007,
+      "height": 0.11339283609975531,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 148,
+      "commit_step": 65
+    },
+    {
+      "case_index": 8,
+      "seed": 741000008,
+      "height": 0.03157351440325646,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 117,
+      "commit_step": 30
+    },
+    {
+      "case_index": 9,
+      "seed": 741000009,
+      "height": 0.06997802305379394,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 130,
+      "commit_step": 45
+    },
+    {
+      "case_index": 10,
+      "seed": 741000010,
+      "height": 0.13218922821831744,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 155,
+      "commit_step": 75
+    },
+    {
+      "case_index": 11,
+      "seed": 741000011,
+      "height": 0.033296870438504184,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 117,
+      "commit_step": 30
+    },
+    {
+      "case_index": 12,
+      "seed": 741000012,
+      "height": 0.0285718460991447,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 118,
+      "commit_step": 30
+    },
+    {
+      "case_index": 13,
+      "seed": 741000013,
+      "height": 0.03526193326529915,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 123,
+      "commit_step": 35
+    },
+    {
+      "case_index": 14,
+      "seed": 741000014,
+      "height": 0.09648639504053144,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 137,
+      "commit_step": 55
+    },
+    {
+      "case_index": 15,
+      "seed": 741000015,
+      "height": 0.08711502492331868,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 16,
+      "seed": 741000016,
+      "height": 0.13008426435271814,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 150,
+      "commit_step": 70
+    },
+    {
+      "case_index": 17,
+      "seed": 741000017,
+      "height": 0.12889643343636972,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 150,
+      "commit_step": 70
+    },
+    {
+      "case_index": 18,
+      "seed": 741000018,
+      "height": 0.13376896862408874,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 155,
+      "commit_step": 75
+    },
+    {
+      "case_index": 19,
+      "seed": 741000019,
+      "height": 0.10624413354896,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 141,
+      "commit_step": 60
+    },
+    {
+      "case_index": 20,
+      "seed": 741000020,
+      "height": 0.09823328161277665,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 137,
+      "commit_step": 55
+    },
+    {
+      "case_index": 21,
+      "seed": 741000021,
+      "height": 0.03780226852773816,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 22,
+      "seed": 741000022,
+      "height": 0.12454185608904211,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 149,
+      "commit_step": 70
+    },
+    {
+      "case_index": 23,
+      "seed": 741000023,
+      "height": 0.0410739132336772,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 24,
+      "seed": 741000024,
+      "height": 0.03985716257956264,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 25,
+      "seed": 741000025,
+      "height": 0.08196523496448634,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 128,
+      "commit_step": 45
+    },
+    {
+      "case_index": 26,
+      "seed": 741000026,
+      "height": 0.04064315531207863,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 27,
+      "seed": 741000027,
+      "height": 0.10506634071248534,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 141,
+      "commit_step": 60
+    },
+    {
+      "case_index": 28,
+      "seed": 741000028,
+      "height": 0.07959172491728972,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 29,
+      "seed": 741000029,
+      "height": 0.09217092390727015,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 30,
+      "seed": 741000030,
+      "height": 0.13292762047188678,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 155,
+      "commit_step": 75
+    },
+    {
+      "case_index": 31,
+      "seed": 741000031,
+      "height": 0.09948610749992944,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 137,
+      "commit_step": 55
+    },
+    {
+      "case_index": 32,
+      "seed": 741000032,
+      "height": 0.04401089242540594,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 33,
+      "seed": 741000033,
+      "height": 0.10339993156303662,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 142,
+      "commit_step": 60
+    },
+    {
+      "case_index": 34,
+      "seed": 741000034,
+      "height": 0.13434715885354084,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 155,
+      "commit_step": 75
+    },
+    {
+      "case_index": 35,
+      "seed": 741000035,
+      "height": 0.03802209309931384,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 36,
+      "seed": 741000036,
+      "height": 0.04065672444143626,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 37,
+      "seed": 741000037,
+      "height": 0.13494868852361194,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 199,
+      "commit_step": 75
+    },
+    {
+      "case_index": 38,
+      "seed": 741000038,
+      "height": 0.0781144247195644,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 39,
+      "seed": 741000039,
+      "height": 0.11469586045994465,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 147,
+      "commit_step": 65
+    },
+    {
+      "case_index": 40,
+      "seed": 741000040,
+      "height": 0.07120193517892558,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 41,
+      "seed": 741000041,
+      "height": 0.1395531555228655,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 215,
+      "commit_step": 75
+    },
+    {
+      "case_index": 42,
+      "seed": 741000042,
+      "height": 0.0755533862460926,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 43,
+      "seed": 741000043,
+      "height": 0.11917389450727127,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 144,
+      "commit_step": 65
+    },
+    {
+      "case_index": 44,
+      "seed": 741000044,
+      "height": 0.10568820805751575,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 142,
+      "commit_step": 60
+    },
+    {
+      "case_index": 45,
+      "seed": 741000045,
+      "height": 0.051326981482387006,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 120,
+      "commit_step": 35
+    },
+    {
+      "case_index": 46,
+      "seed": 741000046,
+      "height": 0.09080591403960658,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 47,
+      "seed": 741000047,
+      "height": 0.07278818556609908,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 48,
+      "seed": 741000048,
+      "height": 0.13497347963523298,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 183,
+      "commit_step": 75
+    },
+    {
+      "case_index": 49,
+      "seed": 741000049,
+      "height": 0.0529459808090394,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 120,
+      "commit_step": 35
+    },
+    {
+      "case_index": 50,
+      "seed": 741000050,
+      "height": 0.056761222176422085,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 125,
+      "commit_step": 40
+    },
+    {
+      "case_index": 51,
+      "seed": 741000051,
+      "height": 0.07214689825239691,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 52,
+      "seed": 741000052,
+      "height": 0.10815116787502659,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 141,
+      "commit_step": 60
+    },
+    {
+      "case_index": 53,
+      "seed": 741000053,
+      "height": 0.08923979400867356,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 133,
+      "commit_step": 50
+    },
+    {
+      "case_index": 54,
+      "seed": 741000054,
+      "height": 0.08611327064601795,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 133,
+      "commit_step": 50
+    },
+    {
+      "case_index": 55,
+      "seed": 741000055,
+      "height": 0.13500689832293156,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 185,
+      "commit_step": 75
+    },
+    {
+      "case_index": 56,
+      "seed": 741000056,
+      "height": 0.11693665276932846,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 145,
+      "commit_step": 65
+    },
+    {
+      "case_index": 57,
+      "seed": 741000057,
+      "height": 0.11866971200332661,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 144,
+      "commit_step": 65
+    },
+    {
+      "case_index": 58,
+      "seed": 741000058,
+      "height": 0.1346715523829516,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 155,
+      "commit_step": 75
+    },
+    {
+      "case_index": 59,
+      "seed": 741000059,
+      "height": 0.06710992221660421,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 124,
+      "commit_step": 40
+    },
+    {
+      "case_index": 60,
+      "seed": 741000060,
+      "height": 0.053971428852914206,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 125,
+      "commit_step": 40
+    },
+    {
+      "case_index": 61,
+      "seed": 741000061,
+      "height": 0.11148981572935354,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 138,
+      "commit_step": 60
+    },
+    {
+      "case_index": 62,
+      "seed": 741000062,
+      "height": 0.11189813746758402,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 147,
+      "commit_step": 65
+    },
+    {
+      "case_index": 63,
+      "seed": 741000063,
+      "height": 0.1202671743807526,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 144,
+      "commit_step": 65
+    },
+    {
+      "case_index": 64,
+      "seed": 741000064,
+      "height": 0.035804209117572906,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 123,
+      "commit_step": 35
+    },
+    {
+      "case_index": 65,
+      "seed": 741000065,
+      "height": 0.09108147155236894,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 66,
+      "seed": 741000066,
+      "height": 0.12116091125117202,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 149,
+      "commit_step": 70
+    },
+    {
+      "case_index": 67,
+      "seed": 741000067,
+      "height": 0.05454948206609285,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 120,
+      "commit_step": 35
+    },
+    {
+      "case_index": 68,
+      "seed": 741000068,
+      "height": 0.11797690559671228,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 144,
+      "commit_step": 65
+    },
+    {
+      "case_index": 69,
+      "seed": 741000069,
+      "height": 0.05180161838616065,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 120,
+      "commit_step": 35
+    },
+    {
+      "case_index": 70,
+      "seed": 741000070,
+      "height": 0.08915989666216284,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 71,
+      "seed": 741000071,
+      "height": 0.04889165222898496,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 121,
+      "commit_step": 35
+    },
+    {
+      "case_index": 72,
+      "seed": 741000072,
+      "height": 0.11168187692996112,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 139,
+      "commit_step": 60
+    },
+    {
+      "case_index": 73,
+      "seed": 741000073,
+      "height": 0.10435773992876106,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 55
+    },
+    {
+      "case_index": 74,
+      "seed": 741000074,
+      "height": 0.08538922290535238,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 133,
+      "commit_step": 50
+    },
+    {
+      "case_index": 75,
+      "seed": 741000075,
+      "height": 0.11499624639767317,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 144,
+      "commit_step": 65
+    },
+    {
+      "case_index": 76,
+      "seed": 741000076,
+      "height": 0.04412400760319554,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 77,
+      "seed": 741000077,
+      "height": 0.1002247725771549,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 133,
+      "commit_step": 55
+    },
+    {
+      "case_index": 78,
+      "seed": 741000078,
+      "height": 0.10062526463032881,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 136,
+      "commit_step": 55
+    },
+    {
+      "case_index": 79,
+      "seed": 741000079,
+      "height": 0.1339267125027579,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 154,
+      "commit_step": 75
+    },
+    {
+      "case_index": 80,
+      "seed": 741000080,
+      "height": 0.11634257853116534,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 146,
+      "commit_step": 65
+    },
+    {
+      "case_index": 81,
+      "seed": 741000081,
+      "height": 0.13235170455116738,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 155,
+      "commit_step": 75
+    },
+    {
+      "case_index": 82,
+      "seed": 741000082,
+      "height": 0.07864666363039757,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 83,
+      "seed": 741000083,
+      "height": 0.09886406504069331,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 137,
+      "commit_step": 55
+    },
+    {
+      "case_index": 84,
+      "seed": 741000084,
+      "height": 0.08683356669010968,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 85,
+      "seed": 741000085,
+      "height": 0.1115616929323422,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 147,
+      "commit_step": 65
+    },
+    {
+      "case_index": 86,
+      "seed": 741000086,
+      "height": 0.0442923845412255,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 87,
+      "seed": 741000087,
+      "height": 0.11205664291297335,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 139,
+      "commit_step": 60
+    },
+    {
+      "case_index": 88,
+      "seed": 741000088,
+      "height": 0.05688668278147844,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 125,
+      "commit_step": 40
+    },
+    {
+      "case_index": 89,
+      "seed": 741000089,
+      "height": 0.09373174397628108,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 90,
+      "seed": 741000090,
+      "height": 0.10399468983181451,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 142,
+      "commit_step": 60
+    },
+    {
+      "case_index": 91,
+      "seed": 741000091,
+      "height": 0.10332103449055298,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 142,
+      "commit_step": 60
+    },
+    {
+      "case_index": 92,
+      "seed": 741000092,
+      "height": 0.04373442682920068,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 93,
+      "seed": 741000093,
+      "height": 0.12326193111100843,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 149,
+      "commit_step": 70
+    },
+    {
+      "case_index": 94,
+      "seed": 741000094,
+      "height": 0.09103141835077616,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 95,
+      "seed": 741000095,
+      "height": 0.04054993627259433,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 96,
+      "seed": 741000096,
+      "height": 0.12936135283322933,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 150,
+      "commit_step": 70
+    },
+    {
+      "case_index": 97,
+      "seed": 741000097,
+      "height": 0.06696974016739367,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 124,
+      "commit_step": 40
+    },
+    {
+      "case_index": 98,
+      "seed": 741000098,
+      "height": 0.11955345273428677,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 144,
+      "commit_step": 65
+    },
+    {
+      "case_index": 99,
+      "seed": 741000099,
+      "height": 0.08395948401705787,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 128,
+      "commit_step": 45
+    },
+    {
+      "case_index": 100,
+      "seed": 741000100,
+      "height": 0.12458423529070342,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 149,
+      "commit_step": 70
+    },
+    {
+      "case_index": 101,
+      "seed": 741000101,
+      "height": 0.041554010616791,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 102,
+      "seed": 741000102,
+      "height": 0.05261878119213396,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 120,
+      "commit_step": 35
+    },
+    {
+      "case_index": 103,
+      "seed": 741000103,
+      "height": 0.07516436761303993,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 104,
+      "seed": 741000104,
+      "height": 0.05826900113404069,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 125,
+      "commit_step": 40
+    },
+    {
+      "case_index": 105,
+      "seed": 741000105,
+      "height": 0.11169512860208908,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 137,
+      "commit_step": 60
+    },
+    {
+      "case_index": 106,
+      "seed": 741000106,
+      "height": 0.08179066420097023,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 107,
+      "seed": 741000107,
+      "height": 0.0641043514616906,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 124,
+      "commit_step": 40
+    },
+    {
+      "case_index": 108,
+      "seed": 741000108,
+      "height": 0.025086194465738267,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 112,
+      "commit_step": 25
+    },
+    {
+      "case_index": 109,
+      "seed": 741000109,
+      "height": 0.0273897850993202,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 118,
+      "commit_step": 30
+    },
+    {
+      "case_index": 110,
+      "seed": 741000110,
+      "height": 0.08670457111809948,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 111,
+      "seed": 741000111,
+      "height": 0.10053261637559552,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 136,
+      "commit_step": 55
+    },
+    {
+      "case_index": 112,
+      "seed": 741000112,
+      "height": 0.08939126688247874,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 113,
+      "seed": 741000113,
+      "height": 0.1276455872264635,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 150,
+      "commit_step": 70
+    },
+    {
+      "case_index": 114,
+      "seed": 741000114,
+      "height": 0.07518186284675854,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 115,
+      "seed": 741000115,
+      "height": 0.027346397701195693,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 118,
+      "commit_step": 30
+    },
+    {
+      "case_index": 116,
+      "seed": 741000116,
+      "height": 0.11485458743011401,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 144,
+      "commit_step": 65
+    },
+    {
+      "case_index": 117,
+      "seed": 741000117,
+      "height": 0.09703828696514734,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 137,
+      "commit_step": 55
+    },
+    {
+      "case_index": 118,
+      "seed": 741000118,
+      "height": 0.09834981535155973,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 137,
+      "commit_step": 55
+    },
+    {
+      "case_index": 119,
+      "seed": 741000119,
+      "height": 0.1307774105804039,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 150,
+      "commit_step": 70
+    },
+    {
+      "case_index": 120,
+      "seed": 741000120,
+      "height": 0.09568245314460906,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 137,
+      "commit_step": 55
+    },
+    {
+      "case_index": 121,
+      "seed": 741000121,
+      "height": 0.05674690248083221,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 125,
+      "commit_step": 40
+    },
+    {
+      "case_index": 122,
+      "seed": 741000122,
+      "height": 0.043672804094874,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 123,
+      "seed": 741000123,
+      "height": 0.05595583676522582,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 125,
+      "commit_step": 40
+    },
+    {
+      "case_index": 124,
+      "seed": 741000124,
+      "height": 0.13542866173719942,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 186,
+      "commit_step": 75
+    },
+    {
+      "case_index": 125,
+      "seed": 741000125,
+      "height": 0.06613948306737219,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 124,
+      "commit_step": 40
+    },
+    {
+      "case_index": 126,
+      "seed": 741000126,
+      "height": 0.03978850945930976,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 127,
+      "seed": 741000127,
+      "height": 0.05790639096084445,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 125,
+      "commit_step": 40
+    },
+    {
+      "case_index": 128,
+      "seed": 741000128,
+      "height": 0.07486918034448616,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 129,
+      "seed": 741000129,
+      "height": 0.13724693911786007,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 211,
+      "commit_step": 75
+    },
+    {
+      "case_index": 130,
+      "seed": 741000130,
+      "height": 0.0426076577961408,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 131,
+      "seed": 741000131,
+      "height": 0.05085552546215262,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 120,
+      "commit_step": 35
+    },
+    {
+      "case_index": 132,
+      "seed": 741000132,
+      "height": 0.09478706388270981,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 136,
+      "commit_step": 55
+    },
+    {
+      "case_index": 133,
+      "seed": 741000133,
+      "height": 0.1107644463010588,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 138,
+      "commit_step": 60
+    },
+    {
+      "case_index": 134,
+      "seed": 741000134,
+      "height": 0.04667443405780234,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 121,
+      "commit_step": 35
+    },
+    {
+      "case_index": 135,
+      "seed": 741000135,
+      "height": 0.06966042079224723,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 124,
+      "commit_step": 40
+    },
+    {
+      "case_index": 136,
+      "seed": 741000136,
+      "height": 0.09341681074982795,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 137,
+      "seed": 741000137,
+      "height": 0.1386719823285602,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 213,
+      "commit_step": 75
+    },
+    {
+      "case_index": 138,
+      "seed": 741000138,
+      "height": 0.10865039851372665,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 137,
+      "commit_step": 60
+    },
+    {
+      "case_index": 139,
+      "seed": 741000139,
+      "height": 0.025733460786784734,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 118,
+      "commit_step": 30
+    },
+    {
+      "case_index": 140,
+      "seed": 741000140,
+      "height": 0.03974771539832964,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 141,
+      "seed": 741000141,
+      "height": 0.026130335361732048,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 118,
+      "commit_step": 30
+    },
+    {
+      "case_index": 142,
+      "seed": 741000142,
+      "height": 0.10994943001908053,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 137,
+      "commit_step": 60
+    },
+    {
+      "case_index": 143,
+      "seed": 741000143,
+      "height": 0.0650117206497002,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 124,
+      "commit_step": 40
+    },
+    {
+      "case_index": 144,
+      "seed": 741000144,
+      "height": 0.11228083566623419,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 147,
+      "commit_step": 65
+    },
+    {
+      "case_index": 145,
+      "seed": 741000145,
+      "height": 0.07854739599446674,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 146,
+      "seed": 741000146,
+      "height": 0.12822030422164932,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 149,
+      "commit_step": 70
+    },
+    {
+      "case_index": 147,
+      "seed": 741000147,
+      "height": 0.056188673380678684,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 125,
+      "commit_step": 40
+    },
+    {
+      "case_index": 148,
+      "seed": 741000148,
+      "height": 0.0465090559683773,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 121,
+      "commit_step": 35
+    },
+    {
+      "case_index": 149,
+      "seed": 741000149,
+      "height": 0.13734871086711517,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 211,
+      "commit_step": 75
+    },
+    {
+      "case_index": 150,
+      "seed": 741000150,
+      "height": 0.0428421217051583,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 151,
+      "seed": 741000151,
+      "height": 0.13350294425365614,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 154,
+      "commit_step": 75
+    },
+    {
+      "case_index": 152,
+      "seed": 741000152,
+      "height": 0.13979596828259655,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 214,
+      "commit_step": 75
+    },
+    {
+      "case_index": 153,
+      "seed": 741000153,
+      "height": 0.10323839442718971,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 142,
+      "commit_step": 60
+    },
+    {
+      "case_index": 154,
+      "seed": 741000154,
+      "height": 0.07394964582637249,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 155,
+      "seed": 741000155,
+      "height": 0.131529090796035,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 155,
+      "commit_step": 75
+    },
+    {
+      "case_index": 156,
+      "seed": 741000156,
+      "height": 0.09619580187751846,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 135,
+      "commit_step": 55
+    },
+    {
+      "case_index": 157,
+      "seed": 741000157,
+      "height": 0.025868873940474213,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 118,
+      "commit_step": 30
+    },
+    {
+      "case_index": 158,
+      "seed": 741000158,
+      "height": 0.033860492789418176,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 117,
+      "commit_step": 30
+    },
+    {
+      "case_index": 159,
+      "seed": 741000159,
+      "height": 0.08121207502534836,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 128,
+      "commit_step": 45
+    },
+    {
+      "case_index": 160,
+      "seed": 741000160,
+      "height": 0.03299143709265691,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 117,
+      "commit_step": 30
+    },
+    {
+      "case_index": 161,
+      "seed": 741000161,
+      "height": 0.036479632932935054,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 123,
+      "commit_step": 35
+    },
+    {
+      "case_index": 162,
+      "seed": 741000162,
+      "height": 0.06248755531231462,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 125,
+      "commit_step": 40
+    },
+    {
+      "case_index": 163,
+      "seed": 741000163,
+      "height": 0.07836115833218615,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 129,
+      "commit_step": 45
+    },
+    {
+      "case_index": 164,
+      "seed": 741000164,
+      "height": 0.09129361180956815,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 165,
+      "seed": 741000165,
+      "height": 0.025596877309169087,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 112,
+      "commit_step": 25
+    },
+    {
+      "case_index": 166,
+      "seed": 741000166,
+      "height": 0.05607708741980726,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 125,
+      "commit_step": 40
+    },
+    {
+      "case_index": 167,
+      "seed": 741000167,
+      "height": 0.025164258947541325,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 112,
+      "commit_step": 25
+    },
+    {
+      "case_index": 168,
+      "seed": 741000168,
+      "height": 0.10696728570613034,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 141,
+      "commit_step": 60
+    },
+    {
+      "case_index": 169,
+      "seed": 741000169,
+      "height": 0.02850682467251879,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 118,
+      "commit_step": 30
+    },
+    {
+      "case_index": 170,
+      "seed": 741000170,
+      "height": 0.03951244516398,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 171,
+      "seed": 741000171,
+      "height": 0.12919445725061734,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 150,
+      "commit_step": 70
+    },
+    {
+      "case_index": 172,
+      "seed": 741000172,
+      "height": 0.04453833526099985,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 173,
+      "seed": 741000173,
+      "height": 0.03769111952361306,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 174,
+      "seed": 741000174,
+      "height": 0.12143565631616572,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 152,
+      "commit_step": 70
+    },
+    {
+      "case_index": 175,
+      "seed": 741000175,
+      "height": 0.13162689494759197,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 155,
+      "commit_step": 75
+    },
+    {
+      "case_index": 176,
+      "seed": 741000176,
+      "height": 0.0869162172924262,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 134,
+      "commit_step": 50
+    },
+    {
+      "case_index": 177,
+      "seed": 741000177,
+      "height": 0.12113816416807782,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 151,
+      "commit_step": 70
+    },
+    {
+      "case_index": 178,
+      "seed": 741000178,
+      "height": 0.07337413629238734,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 128,
+      "commit_step": 45
+    },
+    {
+      "case_index": 179,
+      "seed": 741000179,
+      "height": 0.13308047168562,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 154,
+      "commit_step": 75
+    },
+    {
+      "case_index": 180,
+      "seed": 741000180,
+      "height": 0.07058768378446019,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 130,
+      "commit_step": 45
+    },
+    {
+      "case_index": 181,
+      "seed": 741000181,
+      "height": 0.1375833277443161,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 212,
+      "commit_step": 75
+    },
+    {
+      "case_index": 182,
+      "seed": 741000182,
+      "height": 0.03475649613455308,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 123,
+      "commit_step": 35
+    },
+    {
+      "case_index": 183,
+      "seed": 741000183,
+      "height": 0.03342490676561543,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 117,
+      "commit_step": 30
+    },
+    {
+      "case_index": 184,
+      "seed": 741000184,
+      "height": 0.06177972175025025,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 125,
+      "commit_step": 40
+    },
+    {
+      "case_index": 185,
+      "seed": 741000185,
+      "height": 0.030838364171982765,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 118,
+      "commit_step": 30
+    },
+    {
+      "case_index": 186,
+      "seed": 741000186,
+      "height": 0.06152540497297644,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 124,
+      "commit_step": 40
+    },
+    {
+      "case_index": 187,
+      "seed": 741000187,
+      "height": 0.05262305424678148,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 120,
+      "commit_step": 35
+    },
+    {
+      "case_index": 188,
+      "seed": 741000188,
+      "height": 0.09282992325912905,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 189,
+      "seed": 741000189,
+      "height": 0.03364777384087957,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 117,
+      "commit_step": 30
+    },
+    {
+      "case_index": 190,
+      "seed": 741000190,
+      "height": 0.03849296356679733,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 191,
+      "seed": 741000191,
+      "height": 0.046189352567372256,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 121,
+      "commit_step": 35
+    },
+    {
+      "case_index": 192,
+      "seed": 741000192,
+      "height": 0.11363530272496714,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 147,
+      "commit_step": 65
+    },
+    {
+      "case_index": 193,
+      "seed": 741000193,
+      "height": 0.10923440426949703,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 137,
+      "commit_step": 60
+    },
+    {
+      "case_index": 194,
+      "seed": 741000194,
+      "height": 0.11330876345274628,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 144,
+      "commit_step": 65
+    },
+    {
+      "case_index": 195,
+      "seed": 741000195,
+      "height": 0.06310109033576683,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 125,
+      "commit_step": 40
+    },
+    {
+      "case_index": 196,
+      "seed": 741000196,
+      "height": 0.03544428010293143,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 123,
+      "commit_step": 35
+    },
+    {
+      "case_index": 197,
+      "seed": 741000197,
+      "height": 0.12338068744960631,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 149,
+      "commit_step": 70
+    },
+    {
+      "case_index": 198,
+      "seed": 741000198,
+      "height": 0.09354000816734291,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 132,
+      "commit_step": 50
+    },
+    {
+      "case_index": 199,
+      "seed": 741000199,
+      "height": 0.03969923152248881,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "normal",
+      "centered_success": true,
+      "reason": "success",
+      "error": null,
+      "physical_actions": 122,
+      "commit_step": 35
+    },
+    {
+      "case_index": 0,
+      "seed": 741000000,
+      "height": 0.1391434279840487,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 91,
+      "commit_step": null
+    },
+    {
+      "case_index": 1,
+      "seed": 741000001,
+      "height": 0.0691895096498713,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 34,
+      "commit_step": null
+    },
+    {
+      "case_index": 2,
+      "seed": 741000002,
+      "height": 0.10437276577727463,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 66,
+      "commit_step": null
+    },
+    {
+      "case_index": 3,
+      "seed": 741000003,
+      "height": 0.1368590321726703,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 92,
+      "commit_step": null
+    },
+    {
+      "case_index": 4,
+      "seed": 741000004,
+      "height": 0.11718456139699203,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 83,
+      "commit_step": null
+    },
+    {
+      "case_index": 5,
+      "seed": 741000005,
+      "height": 0.10590280623255821,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 66,
+      "commit_step": null
+    },
+    {
+      "case_index": 6,
+      "seed": 741000006,
+      "height": 0.10920703696742029,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 69,
+      "commit_step": null
+    },
+    {
+      "case_index": 7,
+      "seed": 741000007,
+      "height": 0.11339283609975531,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 76,
+      "commit_step": null
+    },
+    {
+      "case_index": 8,
+      "seed": 741000008,
+      "height": 0.03157351440325646,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 38,
+      "commit_step": null
+    },
+    {
+      "case_index": 9,
+      "seed": 741000009,
+      "height": 0.06997802305379394,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 35,
+      "commit_step": null
+    },
+    {
+      "case_index": 10,
+      "seed": 741000010,
+      "height": 0.13218922821831744,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 85,
+      "commit_step": null
+    },
+    {
+      "case_index": 11,
+      "seed": 741000011,
+      "height": 0.033296870438504184,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 37,
+      "commit_step": null
+    },
+    {
+      "case_index": 12,
+      "seed": 741000012,
+      "height": 0.0285718460991447,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 40,
+      "commit_step": null
+    },
+    {
+      "case_index": 13,
+      "seed": 741000013,
+      "height": 0.03526193326529915,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 36,
+      "commit_step": null
+    },
+    {
+      "case_index": 14,
+      "seed": 741000014,
+      "height": 0.09648639504053144,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 61,
+      "commit_step": null
+    },
+    {
+      "case_index": 15,
+      "seed": 741000015,
+      "height": 0.08711502492331868,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 53,
+      "commit_step": null
+    },
+    {
+      "case_index": 16,
+      "seed": 741000016,
+      "height": 0.13008426435271814,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 88,
+      "commit_step": null
+    },
+    {
+      "case_index": 17,
+      "seed": 741000017,
+      "height": 0.12889643343636972,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 90,
+      "commit_step": null
+    },
+    {
+      "case_index": 18,
+      "seed": 741000018,
+      "height": 0.13376896862408874,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 83,
+      "commit_step": null
+    },
+    {
+      "case_index": 19,
+      "seed": 741000019,
+      "height": 0.10624413354896,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 67,
+      "commit_step": null
+    },
+    {
+      "case_index": 20,
+      "seed": 741000020,
+      "height": 0.09823328161277665,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 63,
+      "commit_step": null
+    },
+    {
+      "case_index": 21,
+      "seed": 741000021,
+      "height": 0.03780226852773816,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 34,
+      "commit_step": null
+    },
+    {
+      "case_index": 22,
+      "seed": 741000022,
+      "height": 0.12454185608904211,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 82,
+      "commit_step": null
+    },
+    {
+      "case_index": 23,
+      "seed": 741000023,
+      "height": 0.0410739132336772,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 33,
+      "commit_step": null
+    },
+    {
+      "case_index": 24,
+      "seed": 741000024,
+      "height": 0.03985716257956264,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 34,
+      "commit_step": null
+    },
+    {
+      "case_index": 25,
+      "seed": 741000025,
+      "height": 0.08196523496448634,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 46,
+      "commit_step": null
+    },
+    {
+      "case_index": 26,
+      "seed": 741000026,
+      "height": 0.04064315531207863,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 33,
+      "commit_step": null
+    },
+    {
+      "case_index": 27,
+      "seed": 741000027,
+      "height": 0.10506634071248534,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 67,
+      "commit_step": null
+    },
+    {
+      "case_index": 28,
+      "seed": 741000028,
+      "height": 0.07959172491728972,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 45,
+      "commit_step": null
+    },
+    {
+      "case_index": 29,
+      "seed": 741000029,
+      "height": 0.09217092390727015,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 55,
+      "commit_step": null
+    },
+    {
+      "case_index": 30,
+      "seed": 741000030,
+      "height": 0.13292762047188678,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 86,
+      "commit_step": null
+    },
+    {
+      "case_index": 31,
+      "seed": 741000031,
+      "height": 0.09948610749992944,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 64,
+      "commit_step": null
+    },
+    {
+      "case_index": 32,
+      "seed": 741000032,
+      "height": 0.04401089242540594,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 32,
+      "commit_step": null
+    },
+    {
+      "case_index": 33,
+      "seed": 741000033,
+      "height": 0.10339993156303662,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 67,
+      "commit_step": null
+    },
+    {
+      "case_index": 34,
+      "seed": 741000034,
+      "height": 0.13434715885354084,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 84,
+      "commit_step": null
+    },
+    {
+      "case_index": 35,
+      "seed": 741000035,
+      "height": 0.03802209309931384,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 34,
+      "commit_step": null
+    },
+    {
+      "case_index": 36,
+      "seed": 741000036,
+      "height": 0.04065672444143626,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 33,
+      "commit_step": null
+    },
+    {
+      "case_index": 37,
+      "seed": 741000037,
+      "height": 0.13494868852361194,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 87,
+      "commit_step": null
+    },
+    {
+      "case_index": 38,
+      "seed": 741000038,
+      "height": 0.0781144247195644,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 44,
+      "commit_step": null
+    },
+    {
+      "case_index": 39,
+      "seed": 741000039,
+      "height": 0.11469586045994465,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 78,
+      "commit_step": null
+    },
+    {
+      "case_index": 40,
+      "seed": 741000040,
+      "height": 0.07120193517892558,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 36,
+      "commit_step": null
+    },
+    {
+      "case_index": 41,
+      "seed": 741000041,
+      "height": 0.1395531555228655,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 89,
+      "commit_step": null
+    },
+    {
+      "case_index": 42,
+      "seed": 741000042,
+      "height": 0.0755533862460926,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 42,
+      "commit_step": null
+    },
+    {
+      "case_index": 43,
+      "seed": 741000043,
+      "height": 0.11917389450727127,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 80,
+      "commit_step": null
+    },
+    {
+      "case_index": 44,
+      "seed": 741000044,
+      "height": 0.10568820805751575,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 66,
+      "commit_step": null
+    },
+    {
+      "case_index": 45,
+      "seed": 741000045,
+      "height": 0.051326981482387006,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 28,
+      "commit_step": null
+    },
+    {
+      "case_index": 46,
+      "seed": 741000046,
+      "height": 0.09080591403960658,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 55,
+      "commit_step": null
+    },
+    {
+      "case_index": 47,
+      "seed": 741000047,
+      "height": 0.07278818556609908,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 38,
+      "commit_step": null
+    },
+    {
+      "case_index": 48,
+      "seed": 741000048,
+      "height": 0.13497347963523298,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 85,
+      "commit_step": null
+    },
+    {
+      "case_index": 49,
+      "seed": 741000049,
+      "height": 0.0529459808090394,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 27,
+      "commit_step": null
+    },
+    {
+      "case_index": 50,
+      "seed": 741000050,
+      "height": 0.056761222176422085,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 28,
+      "commit_step": null
+    },
+    {
+      "case_index": 51,
+      "seed": 741000051,
+      "height": 0.07214689825239691,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 37,
+      "commit_step": null
+    },
+    {
+      "case_index": 52,
+      "seed": 741000052,
+      "height": 0.10815116787502659,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 68,
+      "commit_step": null
+    },
+    {
+      "case_index": 53,
+      "seed": 741000053,
+      "height": 0.08923979400867356,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 51,
+      "commit_step": null
+    },
+    {
+      "case_index": 54,
+      "seed": 741000054,
+      "height": 0.08611327064601795,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 55,
+      "commit_step": null
+    },
+    {
+      "case_index": 55,
+      "seed": 741000055,
+      "height": 0.13500689832293156,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 86,
+      "commit_step": null
+    },
+    {
+      "case_index": 56,
+      "seed": 741000056,
+      "height": 0.11693665276932846,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 82,
+      "commit_step": null
+    },
+    {
+      "case_index": 57,
+      "seed": 741000057,
+      "height": 0.11866971200332661,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 82,
+      "commit_step": null
+    },
+    {
+      "case_index": 58,
+      "seed": 741000058,
+      "height": 0.1346715523829516,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 84,
+      "commit_step": null
+    },
+    {
+      "case_index": 59,
+      "seed": 741000059,
+      "height": 0.06710992221660421,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 34,
+      "commit_step": null
+    },
+    {
+      "case_index": 60,
+      "seed": 741000060,
+      "height": 0.053971428852914206,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 27,
+      "commit_step": null
+    },
+    {
+      "case_index": 61,
+      "seed": 741000061,
+      "height": 0.11148981572935354,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 73,
+      "commit_step": null
+    },
+    {
+      "case_index": 62,
+      "seed": 741000062,
+      "height": 0.11189813746758402,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 72,
+      "commit_step": null
+    },
+    {
+      "case_index": 63,
+      "seed": 741000063,
+      "height": 0.1202671743807526,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 80,
+      "commit_step": null
+    },
+    {
+      "case_index": 64,
+      "seed": 741000064,
+      "height": 0.035804209117572906,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 35,
+      "commit_step": null
+    },
+    {
+      "case_index": 65,
+      "seed": 741000065,
+      "height": 0.09108147155236894,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 55,
+      "commit_step": null
+    },
+    {
+      "case_index": 66,
+      "seed": 741000066,
+      "height": 0.12116091125117202,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 86,
+      "commit_step": null
+    },
+    {
+      "case_index": 67,
+      "seed": 741000067,
+      "height": 0.05454948206609285,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 27,
+      "commit_step": null
+    },
+    {
+      "case_index": 68,
+      "seed": 741000068,
+      "height": 0.11797690559671228,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 81,
+      "commit_step": null
+    },
+    {
+      "case_index": 69,
+      "seed": 741000069,
+      "height": 0.05180161838616065,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 28,
+      "commit_step": null
+    },
+    {
+      "case_index": 70,
+      "seed": 741000070,
+      "height": 0.08915989666216284,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 53,
+      "commit_step": null
+    },
+    {
+      "case_index": 71,
+      "seed": 741000071,
+      "height": 0.04889165222898496,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 29,
+      "commit_step": null
+    },
+    {
+      "case_index": 72,
+      "seed": 741000072,
+      "height": 0.11168187692996112,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 74,
+      "commit_step": null
+    },
+    {
+      "case_index": 73,
+      "seed": 741000073,
+      "height": 0.10435773992876106,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 67,
+      "commit_step": null
+    },
+    {
+      "case_index": 74,
+      "seed": 741000074,
+      "height": 0.08538922290535238,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 50,
+      "commit_step": null
+    },
+    {
+      "case_index": 75,
+      "seed": 741000075,
+      "height": 0.11499624639767317,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 78,
+      "commit_step": null
+    },
+    {
+      "case_index": 76,
+      "seed": 741000076,
+      "height": 0.04412400760319554,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 32,
+      "commit_step": null
+    },
+    {
+      "case_index": 77,
+      "seed": 741000077,
+      "height": 0.1002247725771549,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 67,
+      "commit_step": null
+    },
+    {
+      "case_index": 78,
+      "seed": 741000078,
+      "height": 0.10062526463032881,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 67,
+      "commit_step": null
+    },
+    {
+      "case_index": 79,
+      "seed": 741000079,
+      "height": 0.1339267125027579,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 84,
+      "commit_step": null
+    },
+    {
+      "case_index": 80,
+      "seed": 741000080,
+      "height": 0.11634257853116534,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 80,
+      "commit_step": null
+    },
+    {
+      "case_index": 81,
+      "seed": 741000081,
+      "height": 0.13235170455116738,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 86,
+      "commit_step": null
+    },
+    {
+      "case_index": 82,
+      "seed": 741000082,
+      "height": 0.07864666363039757,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 44,
+      "commit_step": null
+    },
+    {
+      "case_index": 83,
+      "seed": 741000083,
+      "height": 0.09886406504069331,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 65,
+      "commit_step": null
+    },
+    {
+      "case_index": 84,
+      "seed": 741000084,
+      "height": 0.08683356669010968,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 52,
+      "commit_step": null
+    },
+    {
+      "case_index": 85,
+      "seed": 741000085,
+      "height": 0.1115616929323422,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 75,
+      "commit_step": null
+    },
+    {
+      "case_index": 86,
+      "seed": 741000086,
+      "height": 0.0442923845412255,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 32,
+      "commit_step": null
+    },
+    {
+      "case_index": 87,
+      "seed": 741000087,
+      "height": 0.11205664291297335,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 75,
+      "commit_step": null
+    },
+    {
+      "case_index": 88,
+      "seed": 741000088,
+      "height": 0.05688668278147844,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 28,
+      "commit_step": null
+    },
+    {
+      "case_index": 89,
+      "seed": 741000089,
+      "height": 0.09373174397628108,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 57,
+      "commit_step": null
+    },
+    {
+      "case_index": 90,
+      "seed": 741000090,
+      "height": 0.10399468983181451,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 66,
+      "commit_step": null
+    },
+    {
+      "case_index": 91,
+      "seed": 741000091,
+      "height": 0.10332103449055298,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 68,
+      "commit_step": null
+    },
+    {
+      "case_index": 92,
+      "seed": 741000092,
+      "height": 0.04373442682920068,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 32,
+      "commit_step": null
+    },
+    {
+      "case_index": 93,
+      "seed": 741000093,
+      "height": 0.12326193111100843,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 85,
+      "commit_step": null
+    },
+    {
+      "case_index": 94,
+      "seed": 741000094,
+      "height": 0.09103141835077616,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 55,
+      "commit_step": null
+    },
+    {
+      "case_index": 95,
+      "seed": 741000095,
+      "height": 0.04054993627259433,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 33,
+      "commit_step": null
+    },
+    {
+      "case_index": 96,
+      "seed": 741000096,
+      "height": 0.12936135283322933,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 87,
+      "commit_step": null
+    },
+    {
+      "case_index": 97,
+      "seed": 741000097,
+      "height": 0.06696974016739367,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 34,
+      "commit_step": null
+    },
+    {
+      "case_index": 98,
+      "seed": 741000098,
+      "height": 0.11955345273428677,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 82,
+      "commit_step": null
+    },
+    {
+      "case_index": 99,
+      "seed": 741000099,
+      "height": 0.08395948401705787,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 49,
+      "commit_step": null
+    },
+    {
+      "case_index": 100,
+      "seed": 741000100,
+      "height": 0.12458423529070342,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 83,
+      "commit_step": null
+    },
+    {
+      "case_index": 101,
+      "seed": 741000101,
+      "height": 0.041554010616791,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 34,
+      "commit_step": null
+    },
+    {
+      "case_index": 102,
+      "seed": 741000102,
+      "height": 0.05261878119213396,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 27,
+      "commit_step": null
+    },
+    {
+      "case_index": 103,
+      "seed": 741000103,
+      "height": 0.07516436761303993,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 42,
+      "commit_step": null
+    },
+    {
+      "case_index": 104,
+      "seed": 741000104,
+      "height": 0.05826900113404069,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 29,
+      "commit_step": null
+    },
+    {
+      "case_index": 105,
+      "seed": 741000105,
+      "height": 0.11169512860208908,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 72,
+      "commit_step": null
+    },
+    {
+      "case_index": 106,
+      "seed": 741000106,
+      "height": 0.08179066420097023,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 46,
+      "commit_step": null
+    },
+    {
+      "case_index": 107,
+      "seed": 741000107,
+      "height": 0.0641043514616906,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 32,
+      "commit_step": null
+    },
+    {
+      "case_index": 108,
+      "seed": 741000108,
+      "height": 0.025086194465738267,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 44,
+      "commit_step": null
+    },
+    {
+      "case_index": 109,
+      "seed": 741000109,
+      "height": 0.0273897850993202,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 42,
+      "commit_step": null
+    },
+    {
+      "case_index": 110,
+      "seed": 741000110,
+      "height": 0.08670457111809948,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 52,
+      "commit_step": null
+    },
+    {
+      "case_index": 111,
+      "seed": 741000111,
+      "height": 0.10053261637559552,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 67,
+      "commit_step": null
+    },
+    {
+      "case_index": 112,
+      "seed": 741000112,
+      "height": 0.08939126688247874,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 53,
+      "commit_step": null
+    },
+    {
+      "case_index": 113,
+      "seed": 741000113,
+      "height": 0.1276455872264635,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 86,
+      "commit_step": null
+    },
+    {
+      "case_index": 114,
+      "seed": 741000114,
+      "height": 0.07518186284675854,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 42,
+      "commit_step": null
+    },
+    {
+      "case_index": 115,
+      "seed": 741000115,
+      "height": 0.027346397701195693,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 42,
+      "commit_step": null
+    },
+    {
+      "case_index": 116,
+      "seed": 741000116,
+      "height": 0.11485458743011401,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 81,
+      "commit_step": null
+    },
+    {
+      "case_index": 117,
+      "seed": 741000117,
+      "height": 0.09703828696514734,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 61,
+      "commit_step": null
+    },
+    {
+      "case_index": 118,
+      "seed": 741000118,
+      "height": 0.09834981535155973,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 64,
+      "commit_step": null
+    },
+    {
+      "case_index": 119,
+      "seed": 741000119,
+      "height": 0.1307774105804039,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 88,
+      "commit_step": null
+    },
+    {
+      "case_index": 120,
+      "seed": 741000120,
+      "height": 0.09568245314460906,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 59,
+      "commit_step": null
+    },
+    {
+      "case_index": 121,
+      "seed": 741000121,
+      "height": 0.05674690248083221,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 28,
+      "commit_step": null
+    },
+    {
+      "case_index": 122,
+      "seed": 741000122,
+      "height": 0.043672804094874,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 32,
+      "commit_step": null
+    },
+    {
+      "case_index": 123,
+      "seed": 741000123,
+      "height": 0.05595583676522582,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 27,
+      "commit_step": null
+    },
+    {
+      "case_index": 124,
+      "seed": 741000124,
+      "height": 0.13542866173719942,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 85,
+      "commit_step": null
+    },
+    {
+      "case_index": 125,
+      "seed": 741000125,
+      "height": 0.06613948306737219,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 33,
+      "commit_step": null
+    },
+    {
+      "case_index": 126,
+      "seed": 741000126,
+      "height": 0.03978850945930976,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 34,
+      "commit_step": null
+    },
+    {
+      "case_index": 127,
+      "seed": 741000127,
+      "height": 0.05790639096084445,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 28,
+      "commit_step": null
+    },
+    {
+      "case_index": 128,
+      "seed": 741000128,
+      "height": 0.07486918034448616,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 41,
+      "commit_step": null
+    },
+    {
+      "case_index": 129,
+      "seed": 741000129,
+      "height": 0.13724693911786007,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 87,
+      "commit_step": null
+    },
+    {
+      "case_index": 130,
+      "seed": 741000130,
+      "height": 0.0426076577961408,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 33,
+      "commit_step": null
+    },
+    {
+      "case_index": 131,
+      "seed": 741000131,
+      "height": 0.05085552546215262,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 28,
+      "commit_step": null
+    },
+    {
+      "case_index": 132,
+      "seed": 741000132,
+      "height": 0.09478706388270981,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 60,
+      "commit_step": null
+    },
+    {
+      "case_index": 133,
+      "seed": 741000133,
+      "height": 0.1107644463010588,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 73,
+      "commit_step": null
+    },
+    {
+      "case_index": 134,
+      "seed": 741000134,
+      "height": 0.04667443405780234,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 31,
+      "commit_step": null
+    },
+    {
+      "case_index": 135,
+      "seed": 741000135,
+      "height": 0.06966042079224723,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 35,
+      "commit_step": null
+    },
+    {
+      "case_index": 136,
+      "seed": 741000136,
+      "height": 0.09341681074982795,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 59,
+      "commit_step": null
+    },
+    {
+      "case_index": 137,
+      "seed": 741000137,
+      "height": 0.1386719823285602,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 89,
+      "commit_step": null
+    },
+    {
+      "case_index": 138,
+      "seed": 741000138,
+      "height": 0.10865039851372665,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 68,
+      "commit_step": null
+    },
+    {
+      "case_index": 139,
+      "seed": 741000139,
+      "height": 0.025733460786784734,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 42,
+      "commit_step": null
+    },
+    {
+      "case_index": 140,
+      "seed": 741000140,
+      "height": 0.03974771539832964,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 33,
+      "commit_step": null
+    },
+    {
+      "case_index": 141,
+      "seed": 741000141,
+      "height": 0.026130335361732048,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 44,
+      "commit_step": null
+    },
+    {
+      "case_index": 142,
+      "seed": 741000142,
+      "height": 0.10994943001908053,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 73,
+      "commit_step": null
+    },
+    {
+      "case_index": 143,
+      "seed": 741000143,
+      "height": 0.0650117206497002,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 32,
+      "commit_step": null
+    },
+    {
+      "case_index": 144,
+      "seed": 741000144,
+      "height": 0.11228083566623419,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 75,
+      "commit_step": null
+    },
+    {
+      "case_index": 145,
+      "seed": 741000145,
+      "height": 0.07854739599446674,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 44,
+      "commit_step": null
+    },
+    {
+      "case_index": 146,
+      "seed": 741000146,
+      "height": 0.12822030422164932,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 91,
+      "commit_step": null
+    },
+    {
+      "case_index": 147,
+      "seed": 741000147,
+      "height": 0.056188673380678684,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 28,
+      "commit_step": null
+    },
+    {
+      "case_index": 148,
+      "seed": 741000148,
+      "height": 0.0465090559683773,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 31,
+      "commit_step": null
+    },
+    {
+      "case_index": 149,
+      "seed": 741000149,
+      "height": 0.13734871086711517,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 89,
+      "commit_step": null
+    },
+    {
+      "case_index": 150,
+      "seed": 741000150,
+      "height": 0.0428421217051583,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 33,
+      "commit_step": null
+    },
+    {
+      "case_index": 151,
+      "seed": 741000151,
+      "height": 0.13350294425365614,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 84,
+      "commit_step": null
+    },
+    {
+      "case_index": 152,
+      "seed": 741000152,
+      "height": 0.13979596828259655,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 88,
+      "commit_step": null
+    },
+    {
+      "case_index": 153,
+      "seed": 741000153,
+      "height": 0.10323839442718971,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 68,
+      "commit_step": null
+    },
+    {
+      "case_index": 154,
+      "seed": 741000154,
+      "height": 0.07394964582637249,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 39,
+      "commit_step": null
+    },
+    {
+      "case_index": 155,
+      "seed": 741000155,
+      "height": 0.131529090796035,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 87,
+      "commit_step": null
+    },
+    {
+      "case_index": 156,
+      "seed": 741000156,
+      "height": 0.09619580187751846,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 60,
+      "commit_step": null
+    },
+    {
+      "case_index": 157,
+      "seed": 741000157,
+      "height": 0.025868873940474213,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 43,
+      "commit_step": null
+    },
+    {
+      "case_index": 158,
+      "seed": 741000158,
+      "height": 0.033860492789418176,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 36,
+      "commit_step": null
+    },
+    {
+      "case_index": 159,
+      "seed": 741000159,
+      "height": 0.08121207502534836,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 50,
+      "commit_step": null
+    },
+    {
+      "case_index": 160,
+      "seed": 741000160,
+      "height": 0.03299143709265691,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 38,
+      "commit_step": null
+    },
+    {
+      "case_index": 161,
+      "seed": 741000161,
+      "height": 0.036479632932935054,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 34,
+      "commit_step": null
+    },
+    {
+      "case_index": 162,
+      "seed": 741000162,
+      "height": 0.06248755531231462,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 31,
+      "commit_step": null
+    },
+    {
+      "case_index": 163,
+      "seed": 741000163,
+      "height": 0.07836115833218615,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 44,
+      "commit_step": null
+    },
+    {
+      "case_index": 164,
+      "seed": 741000164,
+      "height": 0.09129361180956815,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 55,
+      "commit_step": null
+    },
+    {
+      "case_index": 165,
+      "seed": 741000165,
+      "height": 0.025596877309169087,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 42,
+      "commit_step": null
+    },
+    {
+      "case_index": 166,
+      "seed": 741000166,
+      "height": 0.05607708741980726,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 28,
+      "commit_step": null
+    },
+    {
+      "case_index": 167,
+      "seed": 741000167,
+      "height": 0.025164258947541325,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 41,
+      "commit_step": null
+    },
+    {
+      "case_index": 168,
+      "seed": 741000168,
+      "height": 0.10696728570613034,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 66,
+      "commit_step": null
+    },
+    {
+      "case_index": 169,
+      "seed": 741000169,
+      "height": 0.02850682467251879,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 42,
+      "commit_step": null
+    },
+    {
+      "case_index": 170,
+      "seed": 741000170,
+      "height": 0.03951244516398,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 33,
+      "commit_step": null
+    },
+    {
+      "case_index": 171,
+      "seed": 741000171,
+      "height": 0.12919445725061734,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 87,
+      "commit_step": null
+    },
+    {
+      "case_index": 172,
+      "seed": 741000172,
+      "height": 0.04453833526099985,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 31,
+      "commit_step": null
+    },
+    {
+      "case_index": 173,
+      "seed": 741000173,
+      "height": 0.03769111952361306,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 34,
+      "commit_step": null
+    },
+    {
+      "case_index": 174,
+      "seed": 741000174,
+      "height": 0.12143565631616572,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 82,
+      "commit_step": null
+    },
+    {
+      "case_index": 175,
+      "seed": 741000175,
+      "height": 0.13162689494759197,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 88,
+      "commit_step": null
+    },
+    {
+      "case_index": 176,
+      "seed": 741000176,
+      "height": 0.0869162172924262,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 51,
+      "commit_step": null
+    },
+    {
+      "case_index": 177,
+      "seed": 741000177,
+      "height": 0.12113816416807782,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 83,
+      "commit_step": null
+    },
+    {
+      "case_index": 178,
+      "seed": 741000178,
+      "height": 0.07337413629238734,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 39,
+      "commit_step": null
+    },
+    {
+      "case_index": 179,
+      "seed": 741000179,
+      "height": 0.13308047168562,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 87,
+      "commit_step": null
+    },
+    {
+      "case_index": 180,
+      "seed": 741000180,
+      "height": 0.07058768378446019,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 35,
+      "commit_step": null
+    },
+    {
+      "case_index": 181,
+      "seed": 741000181,
+      "height": 0.1375833277443161,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 88,
+      "commit_step": null
+    },
+    {
+      "case_index": 182,
+      "seed": 741000182,
+      "height": 0.03475649613455308,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 36,
+      "commit_step": null
+    },
+    {
+      "case_index": 183,
+      "seed": 741000183,
+      "height": 0.03342490676561543,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 38,
+      "commit_step": null
+    },
+    {
+      "case_index": 184,
+      "seed": 741000184,
+      "height": 0.06177972175025025,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 30,
+      "commit_step": null
+    },
+    {
+      "case_index": 185,
+      "seed": 741000185,
+      "height": 0.030838364171982765,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 38,
+      "commit_step": null
+    },
+    {
+      "case_index": 186,
+      "seed": 741000186,
+      "height": 0.06152540497297644,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 31,
+      "commit_step": null
+    },
+    {
+      "case_index": 187,
+      "seed": 741000187,
+      "height": 0.05262305424678148,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 28,
+      "commit_step": null
+    },
+    {
+      "case_index": 188,
+      "seed": 741000188,
+      "height": 0.09282992325912905,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 56,
+      "commit_step": null
+    },
+    {
+      "case_index": 189,
+      "seed": 741000189,
+      "height": 0.03364777384087957,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 36,
+      "commit_step": null
+    },
+    {
+      "case_index": 190,
+      "seed": 741000190,
+      "height": 0.03849296356679733,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 34,
+      "commit_step": null
+    },
+    {
+      "case_index": 191,
+      "seed": 741000191,
+      "height": 0.046189352567372256,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 31,
+      "commit_step": null
+    },
+    {
+      "case_index": 192,
+      "seed": 741000192,
+      "height": 0.11363530272496714,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 80,
+      "commit_step": null
+    },
+    {
+      "case_index": 193,
+      "seed": 741000193,
+      "height": 0.10923440426949703,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 71,
+      "commit_step": null
+    },
+    {
+      "case_index": 194,
+      "seed": 741000194,
+      "height": 0.11330876345274628,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 78,
+      "commit_step": null
+    },
+    {
+      "case_index": 195,
+      "seed": 741000195,
+      "height": 0.06310109033576683,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 31,
+      "commit_step": null
+    },
+    {
+      "case_index": 196,
+      "seed": 741000196,
+      "height": 0.03544428010293143,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 35,
+      "commit_step": null
+    },
+    {
+      "case_index": 197,
+      "seed": 741000197,
+      "height": 0.12338068744960631,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 82,
+      "commit_step": null
+    },
+    {
+      "case_index": 198,
+      "seed": 741000198,
+      "height": 0.09354000816734291,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 60,
+      "commit_step": null
+    },
+    {
+      "case_index": 199,
+      "seed": 741000199,
+      "height": 0.03969923152248881,
+      "cup_offset": [
+        0.0,
+        0.0
+      ],
+      "condition": "frozen",
+      "centered_success": false,
+      "reason": "table_collision",
+      "error": null,
+      "physical_actions": 34,
+      "commit_step": null
+    }
+  ]
+}

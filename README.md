@@ -56,6 +56,12 @@ The evaluation samples continuous start heights uniformly from 2.5 to 14 cm.
 [checkpoint hashes](benchmarks/final-model.json) provide the evidence. These are
 measurements of the complete approach–grasp–lift–hold sequence.
 
+**Camera ablation:** on the same 200 registered centered starts, a CPU evaluation
+on September 23, 2026 recorded 200/200 pickups with live images and 0/200 with the
+initial image frozen. This measures sensitivity to removing live visual feedback.
+The original GPU confirmation and this later CPU measurement are reported separately.
+[Ablation records](benchmarks/vision-ablation.json) preserve all 400 outcomes.
+
 ## Run
 
 Requires Python 3.11 or 3.12 and `uv`.
