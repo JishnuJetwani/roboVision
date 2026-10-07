@@ -56,6 +56,13 @@ The evaluation samples continuous start heights uniformly from 2.5 to 14 cm.
 [checkpoint hashes](benchmarks/final-model.json) provide the evidence. These are
 measurements of the complete approach–grasp–lift–hold sequence.
 
+**Camera ablation:** an earlier paired test of the same checkpoints achieved
+191/200 pickups with live images, 0/200 with the initial image frozen, and 0/200
+with entirely black images. That test included small cup-position offsets and is
+separate from the centered result above. It supports dependence on camera input;
+it does not by itself establish robust visual tracking.
+[Ablation records](benchmarks/vision-ablation.json) preserve all 600 outcomes.
+
 ## Run
 
 Requires Python 3.11 or 3.12 and `uv`.
