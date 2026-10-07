@@ -1,0 +1,2934 @@
+{
+  "scope": "Development curriculum gates; repeated seed sets, not independent held-out evaluations.",
+  "gate_protocol": "One deterministic rollout plus three stochastic rollouts per task during training; final checks use ten stochastic rollouts. Retention tasks are hold (5) and pickup (17).",
+  "trials": [
+    {
+      "run": "modal-arm-residual-always-20261004-v1",
+      "source_summary_sha256": "0b955af6622ed7b4ec6b6607ab62630afe2ac7ca645d56a4780f6988f0b8a1d0",
+      "parent_policy_sha256": "c1b0f656e9797fd1871e32fca758312e9caf0721b1b1c4d5fef1acf6da322ec2",
+      "new_training_steps": 204800,
+      "arm_residual_mode": "always",
+      "starting_lesson": 69,
+      "final_lesson": 69,
+      "baseline": {
+        "lesson": null,
+        "passed": false,
+        "checkpoint": null,
+        "evaluations": {
+          "0.079-pickup": [
+            {
+              "seed": 190000,
+              "deterministic": true,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190000,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190001,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190002,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            }
+          ],
+          "retention5": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ],
+          "retention17": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ]
+        }
+      },
+      "gates": [
+        {
+          "lesson": 69,
+          "passed": false,
+          "checkpoint": "step-2748928.zip",
+          "evaluations": {
+            "0.079-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 69,
+          "passed": false,
+          "checkpoint": "step-2789888.zip",
+          "evaluations": {
+            "0.079-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 69,
+          "passed": false,
+          "checkpoint": "step-2830848.zip",
+          "evaluations": {
+            "0.079-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 69,
+          "passed": false,
+          "checkpoint": "step-2871808.zip",
+          "evaluations": {
+            "0.079-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 69,
+          "passed": false,
+          "checkpoint": "step-2912768.zip",
+          "evaluations": {
+            "0.079-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        }
+      ],
+      "final": {
+        "lesson": null,
+        "passed": false,
+        "checkpoint": null,
+        "evaluations": {
+          "0.079-pickup": [
+            {
+              "seed": 190000,
+              "deterministic": true,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190000,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190001,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190002,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190003,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190004,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190005,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190006,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190007,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190008,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190009,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            }
+          ],
+          "retention5": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191003,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191004,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191005,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191006,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191007,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191008,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191009,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ],
+          "retention17": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191003,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191004,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191005,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191006,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191007,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191008,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191009,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run": "modal-arm-residual-wide-20261004-v1",
+      "source_summary_sha256": "242814ae2b8c0c00d77768ec55e72a62090c52e899bd2691b880125e8fbc52e7",
+      "parent_policy_sha256": "c1b0f656e9797fd1871e32fca758312e9caf0721b1b1c4d5fef1acf6da322ec2",
+      "new_training_steps": 204800,
+      "arm_residual_mode": "wide",
+      "starting_lesson": 69,
+      "final_lesson": 71,
+      "baseline": {
+        "lesson": null,
+        "passed": false,
+        "checkpoint": null,
+        "evaluations": {
+          "0.079-pickup": [
+            {
+              "seed": 190000,
+              "deterministic": true,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190000,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190001,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190002,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            }
+          ],
+          "retention5": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ],
+          "retention17": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ]
+        }
+      },
+      "gates": [
+        {
+          "lesson": 69,
+          "passed": true,
+          "checkpoint": "step-2748928.zip",
+          "evaluations": {
+            "0.079-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 70,
+          "passed": true,
+          "checkpoint": "step-2789888.zip",
+          "evaluations": {
+            "0.08-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 71,
+          "passed": false,
+          "checkpoint": "step-2830848.zip",
+          "evaluations": {
+            "0.085-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 71,
+          "passed": false,
+          "checkpoint": "step-2871808.zip",
+          "evaluations": {
+            "0.085-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 71,
+          "passed": false,
+          "checkpoint": "step-2912768.zip",
+          "evaluations": {
+            "0.085-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        }
+      ],
+      "final": {
+        "lesson": null,
+        "passed": false,
+        "checkpoint": null,
+        "evaluations": {
+          "0.085-pickup": [
+            {
+              "seed": 190000,
+              "deterministic": true,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190000,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190001,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190002,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190003,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190004,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190005,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190006,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190007,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190008,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190009,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            }
+          ],
+          "retention5": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191003,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191004,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191005,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191006,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191007,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191008,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191009,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ],
+          "retention17": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191003,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191004,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191005,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191006,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191007,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191008,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191009,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run": "modal-millimeter-arm-20261004-v1",
+      "source_summary_sha256": "096e5605541b27a3f110d73568d832a54fb47b3f940490b18c21fff4d2ae1143",
+      "parent_policy_sha256": "51875663f6446bf156fdf41afe4434ed3965caf6735c6281d50ad3b59e844731",
+      "new_training_steps": 102400,
+      "arm_residual_mode": "wide",
+      "starting_lesson": 70,
+      "final_lesson": 74,
+      "baseline": {
+        "lesson": null,
+        "passed": true,
+        "checkpoint": null,
+        "evaluations": {
+          "0.08-pickup": [
+            {
+              "seed": 190000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 190000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 190001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 190002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ],
+          "retention5": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ],
+          "retention17": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ]
+        }
+      },
+      "gates": [
+        {
+          "lesson": 71,
+          "passed": false,
+          "checkpoint": "step-2810368.zip",
+          "evaluations": {
+            "0.081-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 71,
+          "passed": true,
+          "checkpoint": "step-2830848.zip",
+          "evaluations": {
+            "0.081-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 72,
+          "passed": true,
+          "checkpoint": "step-2851328.zip",
+          "evaluations": {
+            "0.082-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 73,
+          "passed": true,
+          "checkpoint": "step-2871808.zip",
+          "evaluations": {
+            "0.083-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 74,
+          "passed": false,
+          "checkpoint": "step-2892288.zip",
+          "evaluations": {
+            "0.084-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        }
+      ],
+      "final": {
+        "lesson": null,
+        "passed": false,
+        "checkpoint": null,
+        "evaluations": {
+          "0.084-pickup": [
+            {
+              "seed": 190000,
+              "deterministic": true,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190000,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 190002,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190003,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190004,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190005,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190006,
+              "deterministic": false,
+              "success": false,
+              "reason": "timeout"
+            },
+            {
+              "seed": 190007,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190008,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190009,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            }
+          ],
+          "retention5": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191003,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191004,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191005,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191006,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191007,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191008,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191009,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ],
+          "retention17": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191003,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191004,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191005,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191006,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191007,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191008,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191009,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "run": "modal-millimeter-arm-20261004-v2",
+      "source_summary_sha256": "c06eb745c793f1777c28002d7a9af79c839d57bcdfb00fe2b7784ef890edab16",
+      "parent_policy_sha256": "431223bb126b5b10be1b34888dd470a0934463bb79dbfeefb0326afcb86c80fb",
+      "new_training_steps": 102400,
+      "arm_residual_mode": "wide",
+      "starting_lesson": 74,
+      "final_lesson": 77,
+      "baseline": {
+        "lesson": null,
+        "passed": false,
+        "checkpoint": null,
+        "evaluations": {
+          "0.084-pickup": [
+            {
+              "seed": 190000,
+              "deterministic": true,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190000,
+              "deterministic": false,
+              "success": false,
+              "reason": "timeout"
+            },
+            {
+              "seed": 190001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 190002,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            }
+          ],
+          "retention5": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ],
+          "retention17": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ]
+        }
+      },
+      "gates": [
+        {
+          "lesson": 74,
+          "passed": true,
+          "checkpoint": "step-2912768.zip",
+          "evaluations": {
+            "0.084-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 75,
+          "passed": false,
+          "checkpoint": "step-2933248.zip",
+          "evaluations": {
+            "0.085-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 75,
+          "passed": true,
+          "checkpoint": "step-2953728.zip",
+          "evaluations": {
+            "0.085-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 76,
+          "passed": false,
+          "checkpoint": "step-2974208.zip",
+          "evaluations": {
+            "0.086-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": false,
+                "reason": "table_collision"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        },
+        {
+          "lesson": 76,
+          "passed": true,
+          "checkpoint": "step-2994688.zip",
+          "evaluations": {
+            "0.086-pickup": [
+              {
+                "seed": 190000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 190002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention5": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ],
+            "retention17": [
+              {
+                "seed": 191000,
+                "deterministic": true,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191000,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191001,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              },
+              {
+                "seed": 191002,
+                "deterministic": false,
+                "success": true,
+                "reason": "success"
+              }
+            ]
+          }
+        }
+      ],
+      "final": {
+        "lesson": null,
+        "passed": false,
+        "checkpoint": null,
+        "evaluations": {
+          "0.087-pickup": [
+            {
+              "seed": 190000,
+              "deterministic": true,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190000,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 190002,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190003,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190004,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190005,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190006,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190007,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190008,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            },
+            {
+              "seed": 190009,
+              "deterministic": false,
+              "success": false,
+              "reason": "table_collision"
+            }
+          ],
+          "retention5": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191003,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191004,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191005,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191006,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191007,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191008,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191009,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ],
+          "retention17": [
+            {
+              "seed": 191000,
+              "deterministic": true,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191000,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191001,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191002,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191003,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191004,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191005,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191006,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191007,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191008,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            },
+            {
+              "seed": 191009,
+              "deterministic": false,
+              "success": true,
+              "reason": "success"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

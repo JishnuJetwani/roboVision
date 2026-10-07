@@ -1,0 +1,48 @@
+{
+  "architecture": "Learned irreversible manager over approach and pickup PPO force policies",
+  "policy_inputs": [
+    "two96x96RGBframes",
+    "18proprioceptive_values"
+  ],
+  "policy_outputs": [
+    "yaw_torque",
+    "shoulder_torque",
+    "elbow_torque",
+    "wrist_torque",
+    "symmetric_finger_force"
+  ],
+  "manager_option_steps": 5,
+  "deterministic_deployment": true,
+  "training_lineage": "Pure PPO curriculum; no teacher-action initialization in selected lineage",
+  "sources": [
+    {
+      "role": "manager",
+      "run": "modal-hier-ordered-fullstart-20261005-v1",
+      "checkpoint": "step-9472.zip",
+      "sha256": "60bd4b0ce0044e73608996f40132069cb7b04816bb8be4a58ecec940afab1875",
+      "metadata_file": "summary.json",
+      "metadata_sha256": "20888c99d15fdcbcb8bbf65b17d579617f6789faf724a642ce646b70923e457b",
+      "recorded_steps": 9472
+    },
+    {
+      "role": "approach",
+      "run": "modal-hier-centered-approach-20261005-v1",
+      "checkpoint": "policy.zip",
+      "sha256": "2d4ac708db558e5669bf88d5629b5f885dd1f490bb2bb70b36dd79364dd4cdff",
+      "metadata_file": "summary.json",
+      "metadata_sha256": "84bbd70765d78b6d71d5129a98c0a58f1aae1e31f4aa613c52493a20e4cabd06",
+      "recorded_steps": 2261504
+    },
+    {
+      "role": "pickup",
+      "run": "modal-hier-grasp-arrivals-stage2-20261005-v1",
+      "checkpoint": "step-1944064.zip",
+      "sha256": "33ed2a5c7c71369e912a10add651b818cbf926f3ae984bb1772d02afdebb1ee4",
+      "metadata_file": "summary.json",
+      "metadata_sha256": "9411b8c8239d7413fb21a360e898dda1e7018e2a96ad633357a75fb88aed4601",
+      "recorded_steps": 1944064
+    }
+  ],
+  "storage": "Bundled under models/<run>/<checkpoint>; original checkpoint bytes and metadata.",
+  "evaluation": "centered-height-evaluation.json"
+}
